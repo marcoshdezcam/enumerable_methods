@@ -1,12 +1,13 @@
 module Enumerable
-  def my_each(name)
-    yield name
+  def my_each
+    for i in self do
+      yield(i)
+    end
+    self
   end
 end
 
-class Arreglo
-  include Enumerable
-end
+test = %w[Marcos Samuel Ruby Rails Code Terminal]
 
-test = Arreglo.new
-test.my_each('Marcos') { |name| puts %(It's alive #{name}) }
+test.my_each { |itr| puts itr }
+test.each { |itr| puts itr }
