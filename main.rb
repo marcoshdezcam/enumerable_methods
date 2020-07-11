@@ -1,6 +1,12 @@
 module Enumerable
-  def my_each
-    puts "It's alive"
+  def my_each(name)
+    yield name
   end
-  module_function :my_each
 end
+
+class Arreglo
+  include Enumerable
+end
+
+test = Arreglo.new
+test.my_each('Marcos') { |name| puts %(It's alive #{name}) }
