@@ -60,13 +60,20 @@ module Enumerable
   def my_map
     new_array = []
     for i in self do
-      yield(i) ? new_array << i : new_array << false
+      yield(i) ? new_array << true : new_array << false
     end
     new_array
+  end
+
+  def my_inject
+    for i in self do
+      yield(i, self)
+    end
   end
 end
 
 test = %w[Ruby Marcos Patata Hipotenusa Sam]
+test_range = 5...10
 test_hash = { name: 'Ruby', age: '25', height: '10' }
 
 # p test.my_each { |itr| puts itr }
@@ -92,5 +99,8 @@ test_hash = { name: 'Ruby', age: '25', height: '10' }
 # p test.count
 # p test.count { |itr| itr == "Marcos" }
 
-p test.my_map { |itr| itr == "Hola"}
-p test.map { |itr| itr == "Hola"}
+# p test.my_map { |itr| itr == "Ruby"}
+# p test.map { |itr| itr == "Ruby"}
+
+p test_range.my_inject { |sum, number| sum + number }
+p test_range.inject { |sum, number| sum + number }
