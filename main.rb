@@ -60,27 +60,29 @@ module Enumerable
   def my_map
     new_array = []
     for i in self do
-      yield(i) ? new_array << true : new_array << false
+      new_array << yield(i)
     end
     new_array
   end
 
-  def my_inject
+  def my_inject(*args)
     for i in self do
-      yield(i, self)
+      yield(sum, self.at(i-1))
     end
+    sum
   end
 end
 
-test = %w[Ruby Marcos Patata Hipotenusa Sam]
+test_string = %w[Ruby Marcos Patata Hipotenusa Sam]
+test_numbers = [1, 2, 3, 4, 5]
 test_range = 5...10
 test_hash = { name: 'Ruby', age: '25', height: '10' }
 
-# p test.my_each { |itr| puts itr }
-# p test.each { |itr| puts itr }
+# p test_string.my_each { |itr| puts itr }
+# p test_string.each { |itr| puts itr }
 
-# p test_hash.my_each_with_index { |itr| puts itr}
-# p test_hash.each_with_index { |itr| puts itr}
+# p test_hash.my_each_with_index { |item, index| puts %(#{item} and #{index}) }
+# p test_hash.each_with_index { |item, index| puts %(#{item} and #{index}) }
 
 # p test.my_select { |itr| itr == 'Ruby' }
 # p test.select { |itr| itr == 'Ruby' }
@@ -99,8 +101,8 @@ test_hash = { name: 'Ruby', age: '25', height: '10' }
 # p test.count
 # p test.count { |itr| itr == "Marcos" }
 
-# p test.my_map { |itr| itr == "Ruby"}
-# p test.map { |itr| itr == "Ruby"}
+# p test_numbers.my_map { |itr| itr * 2}
+# p test_numbers.map { |itr| itr * 2}
 
-p test_range.my_inject { |sum, number| sum + number }
-p test_range.inject { |sum, number| sum + number }
+p test_numbers.my_inject { |sum, number| sum + number }
+p test_numbers.inject { |sum, number| sum + number }
