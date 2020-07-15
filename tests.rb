@@ -9,8 +9,10 @@ module Enumerable
 end
 
 # Test variables
-t_name = 'my_select' #Change methods to be tested
-t_comp = 'select'    #Change methods to be tested
+# Change methods to be tested
+t_name = 'MY_SELECT'
+# Change methods to be tested
+t_comp = 'SELECT'
 
 test_strings = %w[Ruby Marcos Patata Hipotenusa Sam]
 test_numbers = [1, 2, 3, 4, 5]
@@ -61,13 +63,13 @@ puts %()
 
 puts %(TEST_HASH --> )
 puts t_name
-p %(#{t_name}), test_hash.m_ours
+p test_hash.m_ours
 puts %()
 puts t_comp
-p %(#{t_comp}), test_hash.m_ruby
+p test_hash.m_ruby
 puts %()
 puts t_name
-p %(#{t_name}), test_hash.m_ours { |itr| puts itr }
+p test_hash.m_ours { |itr| puts itr }
 puts %()
 puts t_comp
-p %(#{t_comp}), test_hash.m_ruby { |itr| puts itr }
+p test_hash.m_ruby { |itr| puts itr }

@@ -35,7 +35,7 @@
 #   counter = 0
 #   size = self.size
 #   i += 0
-#     while i < size 
+#     while i < size
 #       yield(i) ? counter += 1 : nil
 #       i += 1
 #     end
@@ -49,7 +49,7 @@
 #   new_array = []
 #   size = self.size
 #   i = 0
-#   while i < size 
+#   while i < size
 #     new_array << yield(i)
 #     i += 1
 #   end
@@ -59,7 +59,7 @@
 # def my_inject
 #   size = self.size
 #   i = 0
-#   while i < size 
+#   while i < size
 #     yield(sum, i[i - 1])
 #     i += 1
 #   end
