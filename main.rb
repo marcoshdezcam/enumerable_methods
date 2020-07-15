@@ -25,10 +25,11 @@ module Enumerable
 
   def my_all?
     counter = 0
+    size = self.size
     for i in self do
       yield(i) ? counter += 1 : nil
     end
-    counter == self.size
+    counter == size
   end
 
   def my_any?
@@ -49,13 +50,14 @@ module Enumerable
 
   def my_count
     counter = 0
+    size = self.size
     if block_given?
       for i in self do
         yield(i) ? counter += 1 : nil
       end
       counter
     else
-      self.size
+      size
     end
   end
 
@@ -80,11 +82,12 @@ test_numbers = [1, 2, 3, 4, 5]
 test_range = 5...10
 test_hash = { name: 'Ruby', age: '25', height: '10' }
 
-# p test_string.my_each { |itr| puts itr }
-# p test_string.each { |itr| puts itr }
+puts %(-> MY_EACH: )
+p test_string.my_each { |itr| puts itr }
+p test_string.each { |itr| puts itr }
 
-# p test_hash.my_each_with_index { |item, index| puts %(#{item} on #{index} position) }
-# p test_hash.each_with_index { |item, index| puts %(#{item} on #{index} position) }
+p test_hash.my_each_with_index { |item, index| puts %(#{item} on #{index} position) }
+p test_hash.each_with_index { |item, index| puts %(#{item} on #{index} position) }
 
 # p test.my_select { |itr| itr == 'Ruby' }
 # p test.select { |itr| itr == 'Ruby' }
