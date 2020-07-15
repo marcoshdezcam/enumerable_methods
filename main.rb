@@ -1,17 +1,19 @@
 module Enumerable
-  def my_each(&block)
-    if !block.class.nil?
-      p block.class
-      p self.class
-      p :my_each
-    else
-      self
+  def my_each()
+    return to_enum(:my_each) unless block_given?
+
+    arr = self
+    i = 0
+    while i < arr.size
+      yield arr[i]
+      i += 1
     end
     self
   end
 
   def my_each_with_index
-    return to_enum(:my_each_with_index) unless block_given? 
+    return to_enum(:my_each_with_index) unless block_given?
+
     index = 0
     for i in self do
       yield(i, index)
@@ -89,7 +91,7 @@ test_hash = { name: 'Ruby', age: '25', height: '10' }
 
 p test_string.my_each { |itr| puts itr }
 p test_string.each { |itr| puts itr }
-#p test_string.my_each
+p test_string.my_each
 p test_string.each
 # p test_numbers.my_each { |itr| puts itr }
 # p test_numbers.each { |itr| puts itr }
