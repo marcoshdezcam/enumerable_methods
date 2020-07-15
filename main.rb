@@ -28,7 +28,7 @@ module Enumerable
     for i in self do
       yield(i) ? counter += 1 : nil
     end
-    counter == self.length
+    counter == self.size
   end
 
   def my_any?
@@ -67,9 +67,9 @@ module Enumerable
     new_array
   end
 
-  def my_inject(*args)
+  def my_inject
     for i in self do
-      yield(sum, self.at(i-1))
+      yield(sum, i[i - 1])
     end
     sum
   end
@@ -98,10 +98,8 @@ test_hash = { name: 'Ruby', age: '25', height: '10' }
 # p test.my_none? { |itr| itr == 'papa' }
 # p test.my_none? { |itr| itr == 'Ruby' }
 
-# p test.my_count
-# p test.my_count { |itr| itr == "Marcos" }
-# p test.count
-# p test.count { |itr| itr == "Marcos" }
+# p test_string.my_count { |itr| itr == "Marcos" }
+# p test_string.count { |itr| itr == "Marcos" }
 
 # p test_numbers.my_map { |itr| itr * 2}
 # p test_numbers.map { |itr| itr * 2}
