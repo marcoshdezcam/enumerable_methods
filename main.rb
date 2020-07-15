@@ -1,12 +1,17 @@
 module Enumerable
-  def my_each
-    for i in self do
-      yield(i)
+  def my_each(&block)
+    if !block.class.nil?
+      p block.class
+      p self.class
+      p :my_each
+    else
+      self
     end
     self
   end
 
   def my_each_with_index
+    return to_enum(:my_each_with_index) unless block_given? 
     index = 0
     for i in self do
       yield(i, index)
@@ -23,7 +28,7 @@ module Enumerable
     item
   end
 
-  def my_all?
+  def my_all?(*args)
     counter = 0
     size = self.size
     for i in self do
@@ -82,24 +87,33 @@ test_numbers = [1, 2, 3, 4, 5]
 test_range = 5...10
 test_hash = { name: 'Ruby', age: '25', height: '10' }
 
-puts %(-> MY_EACH: )
 p test_string.my_each { |itr| puts itr }
 p test_string.each { |itr| puts itr }
+#p test_string.my_each
+p test_string.each
+# p test_numbers.my_each { |itr| puts itr }
+# p test_numbers.each { |itr| puts itr }
+# p test_range.my_each { |itr| puts itr }
+# p test_range.each { |itr| puts itr }
+# p test_hash.my_each { |itr| puts itr }
+# p test_hash.each { |itr| puts itr }
 
-p test_hash.my_each_with_index { |item, index| puts %(#{item} on #{index} position) }
-p test_hash.each_with_index { |item, index| puts %(#{item} on #{index} position) }
 
-# p test.my_select { |itr| itr == 'Ruby' }
-# p test.select { |itr| itr == 'Ruby' }
+# p test_hash.my_each_with_index { |item, index| puts %(#{item} on #{index} position) }
+# p test_hash.each_with_index { |item, index| puts %(#{item} on #{index} position) }
 
-# p test.my_all? { |itr| itr == 'papa' }
-# p test.my_all? { |itr| itr == 'Ruby' }
+# p test_hash.my_select { |itr| itr == 'Ruby' }
+# p test_hash.select { |itr| itr == 'Ruby' }
 
-# p test.my_any? { |itr| itr == 'papa' }
-# p test.my_any? { |itr| itr == 'Ruby' }
+# p test_string.my_all? { |itr| itr == 'papa' }
+# p test_string.my_all? { |itr| itr == 'Ruby' }
+# p test_string.all? {}
 
-# p test.my_none? { |itr| itr == 'papa' }
-# p test.my_none? { |itr| itr == 'Ruby' }
+# p test_string.my_any? { |itr| itr == 'papa' }
+# p test_string.my_any? { |itr| itr == 'Ruby' }
+
+# p test_string.my_none? { |itr| itr == 'papa' }
+# p test_string.my_none? { |itr| itr == 'Ruby' }
 
 # p test_string.my_count { |itr| itr == "Marcos" }
 # p test_string.count { |itr| itr == "Marcos" }
