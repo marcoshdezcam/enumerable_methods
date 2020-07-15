@@ -2,15 +2,15 @@ load 'main.rb'
 
 module Enumerable
   def t_method(*args, &block)
-    each_with_index(*args, &block) # Insert method to test
+    select(*args, &block) # Insert method to test
   end
   alias m_ruby t_method
-  alias m_ours my_each_with_index # Insert method to test
+  alias m_ours my_select # Insert method to test
 end
 
 # Test variables
-t_name = 'my_each_with_index' #Change methods to be tested
-t_comp = 'each_with_index'    #Change methods to be tested
+t_name = 'my_select' #Change methods to be tested
+t_comp = 'select'    #Change methods to be tested
 
 test_strings = %w[Ruby Marcos Patata Hipotenusa Sam]
 test_numbers = [1, 2, 3, 4, 5]

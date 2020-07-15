@@ -26,4 +26,18 @@ module Enumerable
     end
     self
   end
+
+  def my_select
+    return to_enum(:my_select) unless block_given?
+
+    item = []
+    arr = self
+    tarr = arr.to_a
+    i = 0
+    while i < tarr.size
+      yield(i) ? item << tarr[i] : nil
+      i += 1
+    end
+    item
+  end
 end
