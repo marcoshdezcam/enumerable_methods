@@ -1,7 +1,16 @@
 load 'main.rb'
+
+module Enumerable
+  def t_method(*args, &block)
+    each(*args, &block) # Insert method to test
+  end
+  alias m_ruby t_method
+  alias m_ours my_each # Insert method to test
+end
+
 # Test variables
-t_name = 'my_each'
-t_comp = 'each'
+t_name = 'my_each' #Change methods to be tested
+t_comp = 'each'    #Change methods to be tested
 
 test_string = %w[Ruby Marcos Patata Hipotenusa Sam]
 test_numbers = [1, 2, 3, 4, 5]
@@ -10,52 +19,52 @@ test_hash = { name: 'Ruby', age: '25', height: '10' }
 
 # Testing Each/My_Each
 puts t_name
-p test_string.meth.call
+p test_string.m_ours
 puts %()
 puts t_comp
-p test_string.each
+p test_string.m_ruby
 puts %()
 puts t_name
-p test_string.my_each { |itr| puts itr }
+p test_string.m_ours { |itr| puts itr }
 puts %()
 puts t_comp
-p test_string.each { |itr| puts itr }
+p test_string.m_ruby { |itr| puts itr }
 puts %()
 
 puts t_name
-p test_numbers.my_each
+p test_numbers.m_ours
 puts %()
 puts t_comp
-p test_numbers.each
+p test_numbers.m_ruby
 puts %()
 puts t_name
-p test_numbers.my_each { |itr| puts itr }
+p test_numbers.m_ours { |itr| puts itr }
 puts %()
 puts t_comp
-p test_numbers.each { |itr| puts itr }
+p test_numbers.m_ruby { |itr| puts itr }
 puts %()
 
 puts t_name
-p test_range.my_each
+p test_range.m_ours
 puts %()
 puts t_comp
-p test_range.each
+p test_range.m_ruby
 puts %()
 puts t_name
-p test_range.my_each { |itr| puts itr }
+p test_range.m_ours { |itr| puts itr }
 puts %()
 puts t_comp
-p test_range.each { |itr| puts itr }
+p test_range.m_ruby { |itr| puts itr }
 puts %()
 
 puts t_name
-p %(my_each), test_hash.my_each
+p %(my_each), test_hash.m_ours
 puts %()
 puts t_comp
-p %(each), test_hash.each
+p %(each), test_hash.m_ruby
 puts %()
 puts t_name
-p %(my_each), test_hash.my_each { |itr| puts itr }
+p %(my_each), test_hash.m_ours { |itr| puts itr }
 puts %()
 puts t_comp
-p %(each), test_hash.each { |itr| puts itr }
+p %(each), test_hash.m_ruby { |itr| puts itr }
