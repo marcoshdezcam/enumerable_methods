@@ -7,8 +7,10 @@ module Enumerable
   end
 
   def my_each_with_index
+    index = 0
     for i in self do
-      yield(i)
+      yield(i, index)
+      index += 1
     end
     self
   end
@@ -81,8 +83,8 @@ test_hash = { name: 'Ruby', age: '25', height: '10' }
 # p test_string.my_each { |itr| puts itr }
 # p test_string.each { |itr| puts itr }
 
-# p test_hash.my_each_with_index { |item, index| puts %(#{item} and #{index}) }
-# p test_hash.each_with_index { |item, index| puts %(#{item} and #{index}) }
+# p test_hash.my_each_with_index { |item, index| puts %(#{item} on #{index} position) }
+# p test_hash.each_with_index { |item, index| puts %(#{item} on #{index} position) }
 
 # p test.my_select { |itr| itr == 'Ruby' }
 # p test.select { |itr| itr == 'Ruby' }
@@ -104,5 +106,5 @@ test_hash = { name: 'Ruby', age: '25', height: '10' }
 # p test_numbers.my_map { |itr| itr * 2}
 # p test_numbers.map { |itr| itr * 2}
 
-p test_numbers.my_inject { |sum, number| sum + number }
-p test_numbers.inject { |sum, number| sum + number }
+# p test_numbers.my_inject { |sum, number| sum + number }
+# p test_numbers.inject { |sum, number| sum + number }
