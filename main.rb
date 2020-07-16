@@ -31,11 +31,11 @@ module Enumerable
     return to_enum(:my_select) unless block_given?
 
     item = []
-    arr = self
-    tarr = arr.to_a
-    i = 0
+     arr = self
+     tarr = arr.to_a
+     i = 0
     while i < tarr.size
-      yield(i) ? item << tarr[i] : nil
+      yield(tarr[i]) ? item << tarr[i][0] : nil
       i += 1
     end
     item
