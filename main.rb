@@ -31,11 +31,16 @@ module Enumerable
     return to_enum(:my_select) unless block_given?
 
     item = []
-     arr = self
-     tarr = arr.to_a
-     i = 0
+    arr = self
+    tarr = []
+    if arr.class == Hash
+      arr.my_each { |key, value| tarr << key }
+    else
+      tarr = arr.to_a
+    end
+    i = 0
     while i < tarr.size
-      yield(tarr[i]) ? item << tarr[i][0] : nil
+      yield(tarr[i]) ? item << tarr[i] : nil
       i += 1
     end
     item
