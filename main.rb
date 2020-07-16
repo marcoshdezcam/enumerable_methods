@@ -34,7 +34,7 @@ module Enumerable
     arr = self
     tarr = []
     if arr.class == Hash
-      arr.my_each { |key, value| tarr << key }
+      arr.my_each { |key, _value| tarr << key }
     else
       tarr = arr.to_a
     end
@@ -44,5 +44,20 @@ module Enumerable
       i += 1
     end
     item
+  end
+
+  def my_all?(*args)
+    return true unless block_given?
+
+    result = false
+    arr = self
+    i = 0
+    found = ""
+    yield(i) ? result = true : nil
+    arr.my_each do |i|
+      
+      puts found
+    end
+    result
   end
 end

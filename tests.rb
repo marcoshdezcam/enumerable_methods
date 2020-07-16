@@ -2,24 +2,28 @@ load 'main.rb'
 
 module Enumerable
   def t_method(*args, &block)
-    select(*args, &block) # Insert method to test
+    all?(*args, &block) # Insert method to test
   end
   alias m_ruby t_method
-  alias m_ours my_select # Insert method to test
+  alias m_ours my_all? # Insert method to test
 end
 
 # Test variables
-# Change methods to be tested
-t_name = 'MY_SELECT'
-# Change methods to be tested
-t_comp = 'SELECT'
+t_name = 'MY_ALL?' # Change methods to be tested
+t_comp = 'ALL?' # Change methods to be tested
 
-test_strings = %w[Ruby Marcos Patata Hipotenusa Sam]
+test_strings = %w[Ruby Ruby Ruby Hipotenusa Sam]
 test_numbers = [1, 2, 3, 4, 5]
 test_range = 5...10
 test_hash = { name: 'Ruby', age: '25', height: '10' }
 
 puts %(TEST_ARRAY_STRINGS --> )
+puts t_name
+p test_strings.m_ours { |word| word.length >= 3 }
+puts %()
+puts t_comp
+p test_strings.m_ruby { |word| word.length >= 3 }
+puts %()
 puts t_name
 p test_strings.m_ours
 puts %()
