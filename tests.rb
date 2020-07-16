@@ -2,17 +2,17 @@ load 'main.rb'
 
 module Enumerable
   def t_method(*args, &block)
-    select(*args, &block) # Insert method to test
+    all?(*args, &block) # Insert method to test
   end
   alias m_ruby t_method
-  alias m_ours my_select # Insert method to test
+  alias m_ours my_all? # Insert method to test
 end
 
 # Test variables
 # Change methods to be tested
-t_name = 'MY_SELECT'
+t_name = 'MY_ALL?'
 # Change methods to be tested
-t_comp = 'SELECT'
+t_comp = 'ALL?'
 
 test_strings = %w[Ruby Marcos Patata Hipotenusa Sam]
 test_numbers = [1, 2, 3, 4, 5]

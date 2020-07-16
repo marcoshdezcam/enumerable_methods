@@ -45,4 +45,23 @@ module Enumerable
     end
     item
   end
+  
+  def my_all?(*args)
+    return true unless block_given?
+  
+    arr = self.to_a
+    counter = 0
+    i = 0
+    x = 0
+    while i < arr.size
+      arr[i] == arr[i + 1] ? counter += 1 : nil
+      i += 1
+    end
+    yield(arr[x])
+    counter == arr 
+  end
 end
+
+# arr = self
+
+# arr.my_each { yield(i) == yield(i) ? false  }
