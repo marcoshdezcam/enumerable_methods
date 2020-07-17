@@ -46,18 +46,13 @@ module Enumerable
     item
   end
 
-  def my_all?(*args)
+  def my_all?(*_args)
     return true unless block_given?
 
-    result = false
-    arr = self
-    i = 0
-    found = ""
-    yield(i) ? result = true : nil
-    arr.my_each do |i|
-      
-      puts found
+    if self.my_each { |i| yield(i) }
+      return true
+    else
+      return false
     end
-    result
   end
 end
