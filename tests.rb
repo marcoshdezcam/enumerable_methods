@@ -32,51 +32,51 @@ puts %()
 puts t_comp
 p test_strings.m_ruby { |word| word.length >= 4 }
 puts %()
-# puts t_name
-# p test_strings.m_ours(/t/) 
-# puts %()
-# puts t_comp
-# p test_strings.m_ruby(/t/)
-# puts %()
+puts t_name
+p test_strings.m_ours(/t/) 
+puts %()
+puts t_comp
+p test_strings.m_ruby(/t/)
+puts %()
 
-# puts %(TEST_NUMBERS --> )
-# puts t_name
-# p test_numbers.m_ours
-# puts %()
-# puts t_comp
-# p test_numbers.m_ruby
-# puts %()
-# puts t_name
-# p test_numbers.m_ours(Numeric)
-# puts %()
-# puts t_comp
-# p test_numbers.m_ruby(Numeric)
-# puts %()
+puts %(TEST_NUMBERS --> )
+puts t_name
+p test_numbers.m_ours
+puts %()
+puts t_comp
+p test_numbers.m_ruby
+puts %()
+puts t_name
+p test_numbers.m_ours(Numeric)
+puts %()
+puts t_comp
+p test_numbers.m_ruby(Numeric)
+puts %()
 
-# puts %(TEST_RANGE --> )
-# puts t_name
-# p test_range.m_ours
-# puts %()
-# puts t_comp
-# p test_range.m_ruby
-# puts %()
-# puts t_name
-# p test_range.m_ours(Numeric)
-# puts %()
-# puts t_comp
-# p test_range.m_ruby(Numeric)
-# puts %()
+puts %(TEST_RANGE --> )
+puts t_name
+p test_range.m_ours
+puts %()
+puts t_comp
+p test_range.m_ruby
+puts %()
+puts t_name
+p test_range.m_ours(Numeric)
+puts %()
+puts t_comp
+p test_range.m_ruby(Numeric)
+puts %()
 
-# puts %(TEST_HASH --> )
-# puts t_name
-# p test_hash.m_ours
-# puts %()
-# puts t_comp
-# p test_hash.m_ruby
-# puts %()
-# puts t_name
-# p test_hash.m_ours { |key, value| key == "Ruby" || value == "Ruby"}
-# puts %()
-# puts t_comp
-# p test_hash.m_ruby { |key, value| key == "Ruby" || value == "Ruby"}
-# puts %()
+puts %(TEST_HASH --> )
+puts t_name
+p test_hash.m_ours
+puts %()
+puts t_comp
+p test_hash.m_ruby
+puts %()
+puts t_name
+p test_hash.m_ours { |key, value| key == "Ruby" || value == "Ruby"}
+puts %()
+puts t_comp
+p test_hash.m_ruby { |key, value| key == "Ruby" || value == "Ruby"}
+puts %()

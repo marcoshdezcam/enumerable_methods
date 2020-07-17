@@ -49,16 +49,21 @@ module Enumerable
   def my_all?(*args)
     arr = self
     flag = false
-
     if block_given? # lo salta
-      puts %(BLOCK)
       arr.my_each { |i| flag = yield(i) }
-    elsif !block_given? && !args.empty? 
-      puts %(NO BLOCK BUT ARGUMENT)
+    elsif !block_given? && !args.empty?      
       flag = arr.my_each { |i| i == args }
+      if flag == false || nil
+        return true
+      else 
+        return false
+      end
     else
       puts %(NO BLOCK)
-      arr.each { |arr| arr }
+      flag = arr.each { |i| i }
+      if flag != false || nil 
+        return true
+      end
     end
     flag
     end 
