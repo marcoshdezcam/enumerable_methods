@@ -46,16 +46,20 @@ module Enumerable
     item
   end
 
-  def my_all?(*_args)
-    return true unless block_given?
-
-    bandera = false
+  def my_all?(*args)
     arr = self
-    arr.my_each { |i| bandera = yield(i) }
-    bandera
-  end
+    flag = false
+
+    if block_given? # lo salta
+      puts %(BLOCK)
+      arr.my_each { |i| flag = yield(i) }
+    elsif !block_given? && !args.empty? 
+      puts %(NO BLOCK BUT ARGUMENT)
+      flag = arr.my_each { |i| i == args }
+    else
+      puts %(NO BLOCK)
+      arr.each { |arr| arr }
+    end
+    flag
+    end 
 end
-
-# arr = self
-
-# arr.my_each { yield(i) == yield(i) ? false  }
