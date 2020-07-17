@@ -49,10 +49,8 @@ module Enumerable
   def my_all?(*_args)
     return true unless block_given?
 
-    if self.my_each { |i| yield(i) }
-      return true
-    else
-      return false
-    end
+    bandera = false
+    self.my_each { |i| bandera = yield(i) }
+    bandera
   end
 end

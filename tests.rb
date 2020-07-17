@@ -12,7 +12,7 @@ end
 t_name = 'MY_ALL?' # Change methods to be tested
 t_comp = 'ALL?' # Change methods to be tested
 
-test_strings = %w[Ruby Ruby Ruby Hipotenusa Sam]
+test_strings = %w[Ruby Marcos Pazaza VSCode Sam]
 test_numbers = [1, 2, 3, 4, 5]
 test_range = 5...10
 test_hash = { name: 'Ruby', age: '25', height: '10' }
@@ -31,10 +31,10 @@ puts t_comp
 p test_strings.m_ruby { |word| word.length >= 3 }
 puts %()
 puts t_name
-p test_strings.m_ours { |word| word.length < 3 }
+p test_strings.m_ours(/t/)
 puts %()
 puts t_comp
-p test_strings.m_ruby { |word| word.length < 3 }
+p test_strings.m_ruby(/t/)
 puts %()
 
 puts %(TEST_NUMBERS --> )
