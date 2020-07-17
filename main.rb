@@ -46,11 +46,20 @@ module Enumerable
     item
   end
 
-  def my_all?(*_args)
-    return true unless block_given?
+  def my_all?(*args)
+    # block given? == false => TRUE
+      # args.empty? == false => CONTINUE
+      # args.empty? == true => CONTINUE
+      # block_given? == false && args.empty? == false => TRUE
+      # block_given? == true && args.empty? == true => CONTINUE
+      # 
+      # 
+      return true unless block_given?
 
-    bandera = false
-    self.my_each { |i| bandera = yield(i) }
-    bandera
+      if self.my_each { |i| yield(i) }
+        return true
+      else
+        return false
+      end
   end
 end
