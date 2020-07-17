@@ -28,6 +28,7 @@ p test_strings.m_ruby
 puts %()
 puts t_name
 p test_strings.m_ours { |word| word.length >= 4 }
+<<<<<<< HEAD
 puts %()
 puts t_comp
 p test_strings.m_ruby { |word| word.length >= 4 }
@@ -38,6 +39,18 @@ puts %()
 # puts t_comp
 # p test_strings.m_ruby(/t/)
 # puts %()
+=======
+puts %()
+puts t_comp
+p test_strings.m_ruby { |word| word.length >= 4 }
+puts %()
+puts t_name
+p test_strings.m_ours('t')
+puts %()
+puts t_comp
+p test_strings.m_ruby('t')
+puts %()
+>>>>>>> eb3beb6984300fcd5f649ec258b7227aa466dce0
 
 # puts %(TEST_NUMBERS --> )
 # puts t_name
