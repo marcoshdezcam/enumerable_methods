@@ -50,7 +50,8 @@ module Enumerable
     return true unless block_given?
 
     bandera = false
-    self.my_each { |i| bandera = yield(i) }
+    arr = self
+    arr.my_each { |i| bandera = yield(i) }
     bandera
   end
 end
