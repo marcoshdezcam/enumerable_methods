@@ -12,8 +12,8 @@ module Enumerable
     self
   end
 
-  def my_each_with_index
-    return to_enum(:my_each_with_index) unless block_given?
+  def my_each_with_index(*arg, &block)
+    return to_enum(:my_each_with_index) unless block_given? && !arg.empty?
 
     index = 0
     arr = self
