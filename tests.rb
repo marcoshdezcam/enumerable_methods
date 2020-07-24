@@ -2,23 +2,20 @@ load 'main.rb'
 
 module Enumerable
   def t_method(*args, &block)
-    all?(*args, &block) # Insert method to test
+    any?(*args, &block) # Insert method to test
   end
   alias m_ruby t_method
-  alias m_ours my_all? # Insert method to test
+  alias m_ours my_any? # Insert method to test
 end
 
 # Test variables
-t_name = 'MY_ALL?' # Change methods to be tested
-t_comp = 'ALL' # Change methods to be tested
+t_name = 'MY_ANY?' # Change methods to be tested
+t_comp = 'ANY?' # Change methods to be tested
 
-test_strings = %w[Ruby Marcos VSCode Sam Marcos]
+test_strings = %w[Marcos Marcos Marcos Sam Marcos]
 test_numbers = [1, 2, 3, 4, 5]
-test_numbers_d = [1, 2, 3, 4, 5]
 test_range = 5...10
 test_hash = { name: 'Ruby', age: '25', height: '10' }
-obj = Object.new
-enum = obj.to_enum
 
 puts %(--> TEST_ARRAY_STRINGS --- )
 puts t_comp
@@ -28,24 +25,16 @@ puts t_name
 p test_strings.m_ours
 puts %()
 puts t_comp
-p test_strings.m_ruby.to_a
+p test_strings.m_ruby { |word| word.length >= 4 }
 puts %()
 puts t_name
-p test_strings.m_ours.to_a
+p test_strings.m_ours { |word| word.length >= 4 }
 puts %()
 puts t_comp
-p test_strings.m_ruby { |i| puts %(Element: #{i}) }
+p test_strings.m_ruby('Marcos')
 puts %()
 puts t_name
-p test_strings.m_ours { |i| puts %(Element: #{i}) }
-puts %()
-
-puts %(--> TEST_ENUM --- )
-puts t_comp
-p enum.m_ruby.equal?(enum)
-puts %()
-puts t_name
-p enum.m_ours.equal?(enum)
+p test_strings.m_ours('Marcos')
 puts %()
 
 puts %(-->  TEST_NUMBERS -- )
@@ -56,10 +45,16 @@ puts t_name
 p test_numbers.m_ours
 puts %()
 puts t_comp
-p test_numbers.m_ruby { |i| puts i unless i >= 4 }
+p test_numbers.m_ruby { |i| i >= 2 }
 puts %()
 puts t_name
-p test_numbers.m_ours { |i| puts i unless i >= 4 }
+p test_numbers.m_ours { |i| i >= 2 }
+puts %()
+puts t_comp
+p test_numbers.m_ruby(5)
+puts %()
+puts t_name
+p test_numbers.m_ours(5)
 puts %()
 
 puts %(--> TEST_RANGE -- )
@@ -70,10 +65,16 @@ puts t_name
 p test_range.m_ours
 puts %()
 puts t_comp
-p test_range.m_ruby { |i| puts i }
+p test_range.m_ruby { |i| i < 2 }
 puts %()
 puts t_name
-p test_range.m_ours { |i| puts i }
+p test_range.m_ours { |i| i < 2 }
+puts %()
+puts t_comp
+p test_range.m_ruby(5)
+puts %()
+puts t_name
+p test_range.m_ours(5)
 puts %()
 
 puts %(--> TEST_HASH -- )
@@ -84,8 +85,8 @@ puts t_name
 p test_hash.m_ours
 puts %()
 puts t_comp
-p test_hash.m_ruby { |key, value| puts %(#{key} -&- #{value}.)}
+p test_hash.m_ruby { |key, value| key == "Ruby" || value == "Ruby"}
 puts %()
 puts t_name
-p test_hash.m_ours { |key, value| puts %(#{key} -&- #{value}.)}
+p test_hash.m_ours { |key, value| key == "Ruby" || value == "Ruby"}
 puts %()
