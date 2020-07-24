@@ -3,9 +3,13 @@ module Enumerable
     return to_enum(:my_each) unless block_given?
 
     i = 0
+    arr = to_a if self.class == Hash || self.class == Range
     while i < size
-      p self.class
-      yield(at(i))
+      if self.class == Hash || self.class == Range
+        yield(arr.at(i))
+      else
+        yield(at(i))
+      end
       i += 1
     end
     self
@@ -59,5 +63,21 @@ module Enumerable
     end
     return true if flag == size
     return false if flag != size
+  end
+
+  def my_any?(*args)
+    flag = 0
+    case args.empty?
+    when true
+      if block_given?
+        my_each { |i| flag += 1 if yield(i) }
+      else
+        my_each { |i| flag += 1 unless i.nil? || i == false }
+      end
+    when false
+      my_each { |i| flag += 1 if i.eql?(args[0]) }
+    end
+    return false if flag == size
+    return true if flag != size
   end
 end

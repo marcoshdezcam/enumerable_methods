@@ -2,15 +2,15 @@ load 'main.rb'
 
 module Enumerable
   def t_method(*args, &block)
-    each(*args, &block) # Insert method to test
+    all?(*args, &block) # Insert method to test
   end
   alias m_ruby t_method
-  alias m_ours my_each # Insert method to test
+  alias m_ours my_all? # Insert method to test
 end
 
 # Test variables
-t_name = 'MY_EACH?' # Change methods to be tested
-t_comp = 'EACH' # Change methods to be tested
+t_name = 'MY_ALL?' # Change methods to be tested
+t_comp = 'ALL' # Change methods to be tested
 
 test_strings = %w[Ruby Marcos VSCode Sam Marcos]
 test_numbers = [1, 2, 3, 4, 5]
