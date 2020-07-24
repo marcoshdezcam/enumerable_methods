@@ -47,23 +47,15 @@ module Enumerable
   end
 
   def my_all?(*args)
-    arr = self
-    flag = false
-    case block_given?
+    case args.empty?
     when true
-      if !args.empty?
-        puts %(WITH BLOCK, WITH ARGUMENTS)
+      if block_given?
+        my_each { |i| return yield(i) }
       else
-        puts %(WITH BLOCK, NO ARGUMENTS)
-        arr.my_each { |i| flag = yield(i) }
+        my_each { |i| return true unless i.nil? || i == false }
       end
     when false
-      if !args.empty?
-        puts %(NO BLOCK, WITH ARGUMENTS)
-      else
-        arr.my_each { |i| flag = true unless i == false || i.nil? }
-      end
+      my_each { |i| return i == args }
     end
-    flag
   end
 end
