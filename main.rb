@@ -74,10 +74,25 @@ module Enumerable
       else
         my_each { |i| flag += 1 unless i.nil? || i == false }
       end
-    when false
+    when false 
       my_each { |i| flag += 1 if i.eql?(args[0]) }
     end
-    return false if flag == size
-    return true if flag != size
+    return true if flag.positive?
+    return false if flag <= 0
+  end
+
+  def my_none?(*args)
+    case !block_given?
+    when true
+      p my_all?
+      #   false
+      # end
+    when false
+      if my_each { |i| yield(i) == true}
+        false
+      end
+    end
   end
 end
+
+
