@@ -96,4 +96,21 @@ module Enumerable
     return true if counter.zero?
     return false if counter.positive?
   end
+
+  def my_count(*arg)
+    counter = 0
+    case !block_given?
+    when true
+      if arg.empty?
+        size
+      else
+        my_each { |i| counter += 1 if arg[0] == i }
+        counter
+      end
+    when false
+      my_each { |i| counter += 1 if yield(i) == true }
+      counter
+
+    end 
+  end
 end
