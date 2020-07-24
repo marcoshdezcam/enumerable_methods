@@ -47,15 +47,18 @@ module Enumerable
   end
 
   def my_all?(*args)
+    flag = 0
     case args.empty?
     when true
       if block_given?
-        my_each { |i| return yield(i) }
+        my_each { |i| flag += 1 if yield(i) }
       else
-        my_each { |i| return true unless i.nil? || i == false }
+        my_each { |i| flag += 1 unless i.nil? || i == false }
       end
     when false
-      my_each { |i| return i == args }
+      my_each { |i| flag += 1 if i.eql?(args[0]) }
     end
+    return true if flag == size
+    return false if flag != size
   end
 end
