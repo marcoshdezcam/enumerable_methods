@@ -84,14 +84,22 @@ module Enumerable
   def my_none?(*args)
     case !block_given?
     when true
-      p my_all?
-      #   false
-      # end
-    when false
-      if my_each { |i| yield(i) == true}
-        false
+      counter = 0
+      my_each { |i| counter += 1 if i == false }
+        if counter == size
+          return true
+        else
+          return false
+        end
+    when  false
+      counter = 0
+      my_each { |i| counter += 1 if yield(i) == false }
+        if counter == size
+          true
+        else
+          false
+        end
       end
-    end
   end
 end
 
