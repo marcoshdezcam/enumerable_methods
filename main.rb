@@ -113,11 +113,13 @@ module Enumerable
     end
   end
 
-  def my_map(*args)
+  def my_map(prop = nil)
     return to_enum(:my_map) unless block_given?
 
     new_array = []
-    my_each { |i| new_array << yield(i) }
+    my_each { |i|
+      prop ? new_array << prop.call(i) :
+      new_array << yield(i) }
     new_array
   end
   
@@ -127,7 +129,10 @@ module Enumerable
     when true
       puts %(Bloque)
       if arg.empty?
-        my_each { |i| acc = yield(acc, i) }
+        if is_a?(Array)     
+          my_each {|arg,i| yield(arg,i) }
+        end        
+          my_each { |i| acc = yield(acc, i) }
       else
         acc = arg[0]
         my_each { |i| acc = yield(acc, i) }
@@ -145,5 +150,9 @@ module Enumerable
       end
     end
     acc
+  end
+
+  def my_multiply_els(*arg)
+    arg.my_inject(:*)
   end
 end
