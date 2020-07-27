@@ -110,8 +110,15 @@ module Enumerable
     when false
       my_each { |i| counter += 1 if yield(i) == true }
       counter
+    end
+  end
 
-    end 
+  def my_map(*args)
+    return to_enum(:my_map) unless block_given?
+
+    new_array = []
+    my_each { |i| new_array << yield(i) }
+    new_array
   end
   
   def my_inject(*arg) 
