@@ -113,4 +113,29 @@ module Enumerable
 
     end 
   end
+  
+  def my_inject(*arg) 
+    acc = 0  
+    case  block_given?
+    when true #Si hay bloque
+      puts %(Bloque)
+      my_each { |i| acc = yield(acc,i)}
+      acc
+
+    when false #Si no hay bloque
+      if arg.include?(:+)
+        puts %(Argumento suma)  
+        my_each {|i| acc += i }
+        acc
+      else
+        puts %(Argumento multi)
+        acc = 1
+        my_each {|i| acc *= i }
+        acc
+      end
+    end 
+
+    
+       
+    end
 end
