@@ -127,18 +127,15 @@ module Enumerable
         return to_enum(:my_map) unless block_given?
     end
   end
-  
-    
 
   def my_inject(*arg) 
     acc = 0
     case block_given?
     when true
-      puts %(Bloque)
       if arg.empty?
-        if is_a?(Array)     
-          my_each {|arg,i| yield(arg,i) }
-        end        
+        if is_a?(Array)
+          my_each { |arg, i| yield(arg, i) }
+        end
           my_each { |i| acc = yield(acc, i) }
       else
         acc = arg[0]
@@ -148,19 +145,16 @@ module Enumerable
     when false
       arg[0].is_a?(Symbol) ? acc = 0 : acc = arg[0]
       if arg.include?(:+)
-        puts %(Argumento suma)
         my_each { |i| acc += i }
       else
-        puts %(Argumento multi)
         acc = 1
         my_each { |i| acc *= i }
       end
     end
     acc
   end
-
-  def my_multiply_els(*arg)
-    arg.my_inject(:*)
-  end
 end
 
+def multiply_els(array)
+  array.my_inject(:*)
+end
