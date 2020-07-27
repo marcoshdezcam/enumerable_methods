@@ -113,16 +113,22 @@ module Enumerable
     end
   end
 
-  def my_map(prop = nil)
-    return to_enum(:my_map) unless block_given?
-    
-    new_array = []
-    my_each do |i|
-      prop ? new_array << prop.call(i) :
-      new_array << yield(i)
+  def my_map(*arg)
+    case block_given?
+      when true
+        new_array = []
+        my_each do |i|
+          new_array << yield(i)
+        end
+        new_array
+      when false && !arg.empty?
+        return Proc.new{arg}
+      when false && arg.empty?
+        return to_enum(:my_map) unless block_given?
     end
-    new_array
   end
+  
+    
 
   def my_inject(*arg) 
     acc = 0
@@ -157,3 +163,4 @@ module Enumerable
     arg.my_inject(:*)
   end
 end
+

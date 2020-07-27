@@ -75,4 +75,4 @@ puts %()
 
 puts %(PRUEBA MULTIPLY_ELSE)
 multiply = Proc.new { |x, y| x * y }
-p test_range.my_map(multiply)
+p multiply.call(20,2)
