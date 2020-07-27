@@ -13,51 +13,8 @@ test_strings = %w[Marcos Marcos Marcos Sam Marcos]
 test_numbers = [1, 2, 3, 4, 5]
 test_range = 5...10
 test_hash = { name: 'Ruby', age: '25', height: '10' }
-# puts %(--> TEST_ARRAY_STRINGS --- )
-# puts t_comp
-# p test_strings.m_ruby
-# puts %()
-# puts t_name
-# p test_strings.m_ours
-# puts %()
-# puts t_comp
-# p test_strings.m_ruby { |word| word.length >= 4 }
-# puts %()
-# puts t_name
-# p test_strings.m_ours { |word| word.length >= 4 }
-# puts %()
-# puts t_comp
-# p test_strings.m_ruby('Marcos')
-# puts %()
-# puts t_name
-# p test_strings.m_ours('Marcos')
-# puts %()
-# puts %(-->  TEST_NUMBERS -- )
-# puts t_comp
-# p test_numbers.m_ruby
-# puts %()
-# puts t_name
-# p test_numbers.m_ours
-# puts %()
-# puts t_comp
-# p test_numbers.m_ruby { |i| i >= 2 }
-# puts %()
-# puts t_name
-# p test_numbers.m_ours { |i| i >= 2 }
-# puts %()
-# puts t_comp
-# p test_numbers.m_ruby(5)
-# puts %()
-# puts t_name
-# p test_numbers.m_ours(5)
-# puts %()
+
 puts %(--> TEST_RANGE -- )
-# puts t_comp
-# p test_range.m_ruby
-# puts %()
-# puts t_name
-# p test_range.m_ours
-# puts %()
 puts t_comp
 p test_range.m_ruby {  |sum, n| sum + n }
 puts %()
@@ -71,21 +28,34 @@ puts t_name
 p test_range.m_ours(:+)
 puts %()
 puts t_comp
+p test_range.m_ruby(10, :+)
+puts %()
+puts t_name
+p test_range.m_ours(10, :+)
+puts %()
+puts t_comp
 p test_range.m_ruby(:*)
 puts %()
 puts t_name
 p test_range.m_ours(:*)
 puts %()
-# puts %(--> TEST_HASH -- )
-# puts t_comp
-# p test_hash.m_ruby
-# puts %()
-# puts t_name
-# p test_hash.m_ours
-# puts %()
-# puts t_comp
-# p test_hash.m_ruby { |key, value| key == "Ruby" || value == "Ruby"}
-# puts %()
-# puts t_name
-# p test_hash.m_ours { |key, value| key == "Ruby" || value == "Ruby"}
-# puts %()
+puts t_comp
+p test_range.m_ruby(5) { |product, n| product * n }
+puts %()
+puts t_name
+p test_range.m_ours(5) { |product, n| product * n }
+puts %()
+
+puts t_comp
+longest = %w{ cat sheep bear }.m_ruby do |memo, word|
+  memo.length > word.length ? memo : word
+end
+p longest
+puts %()
+
+puts t_comp
+longest_ours = %w{ cat sheep bear }.m_ours do |memo, word|
+  memo.length > word.length ? memo : word
+end
+p longest_ours
+puts %()
