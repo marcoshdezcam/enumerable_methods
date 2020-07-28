@@ -1,4 +1,5 @@
-# rubocop: disable Metrics/CyclomaticComplexity, Metrics/ModuleLength, Metrics/PerceivedComplexity, Metrics/MethodLength
+# rubocop: disable Metrics/ModuleLength
+# rubocop: disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
 module Enumerable
   def my_each
     return to_enum(:my_each) unless block_given?
@@ -16,7 +17,7 @@ module Enumerable
     self
   end
 
-  def my_each_with_index(*arg, &block)
+  def my_each_with_index(*arg)
     return to_enum(:my_each_with_index) unless block_given? && !arg.empty?
 
     index = 0
@@ -143,6 +144,9 @@ module Enumerable
     acc
   end
 end
+
+# rubocop: enable Metrics/ModuleLength
+# rubocop: enable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
 
 def multiply_els(array)
   array.my_inject(:*)
