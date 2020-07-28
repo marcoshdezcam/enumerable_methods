@@ -129,15 +129,22 @@ module Enumerable
     end
   end
 
-  def my_inject(*arg)
+  def my_inject(*arg, &block)
     result = 0
-    acc = 0 if arg[0].is_a?(Symbol) || arg.empty?
-    acc = arg[0] if arg[0].is_a?(Numeric)
+    case arg.size
+    when 1
+      acc = arg[0] if arg[0].is_a?(Numeric)
+      sym = arg[0] if arg[0].is_a?(Symbol)
+    when 2
+      acc = arg[0]
+      sym = arg[1]
+    end
     case block_given?
     when true
       puts %(BLOQUE)
+      p block.find(Symbol)
       my_each { |i| result += yield(acc, i) } if arg.empty?
-      my_each { |i| p yield(acc, i) } unless arg.empty?
+      result = my_each { |i| acc += yield(acc, i) } unless arg.empty? * arg[0]
     when false
       if arg.include?(:+)
         my_each { |i| acc += i }
@@ -148,6 +155,7 @@ module Enumerable
       result = acc
     end
     result
+
   end
 end
 
