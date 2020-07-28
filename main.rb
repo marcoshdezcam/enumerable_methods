@@ -1,3 +1,4 @@
+# rubocop: disable Metrics/CyclomaticComplexity, Metrics/ModuleLength, Metrics/PerceivedComplexity, Metrics/MethodLength
 module Enumerable
   def my_each
     return to_enum(:my_each) unless block_given?
@@ -74,7 +75,7 @@ module Enumerable
       else
         my_each { |i| flag += 1 unless i.nil? || i == false }
       end
-    when false 
+    when false
       my_each { |i| flag += 1 if i.eql?(args[0]) }
     end
     return true if flag.positive?
@@ -115,43 +116,38 @@ module Enumerable
 
   def my_map(*arg)
     case block_given?
-      when true
-        new_array = []
-        my_each do |i|
-          new_array << yield(i)
-        end
-        new_array
-      when false && !arg.empty?
-        return Proc.new{arg}
-      when false && arg.empty?
-        return to_enum(:my_map) unless block_given?
+    when true
+      new_array = []
+      my_each do |i|
+        new_array << yield(i)
+      end
+      new_array
+    when false && !arg.empty?
+      proc { arg }
+    when false && arg.empty?
+      return to_enum(:my_map) unless block_given?
     end
   end
 
-  def my_inject(*arg) 
-    acc = 0
+  def my_inject(*arg)
+    result = 0
+    acc = 0 if arg[0].is_a?(Symbol) || arg.empty?
+    acc = arg[0] if arg[0].is_a?(Numeric)
     case block_given?
     when true
-      if arg.empty?
-        if is_a?(Array)
-          my_each { |arg, i| yield(arg, i) }
-        end
-          my_each { |i| acc = yield(acc, i) }
-      else
-        acc = arg[0]
-        my_each { |i| acc = yield(acc, i) }
-      end
-      acc
+      puts %(BLOQUE)
+      my_each { |i| result += yield(acc, i) } if arg.empty?
+      my_each { |i| p yield(acc, i) } unless arg.empty?
     when false
-      arg[0].is_a?(Symbol) ? acc = 0 : acc = arg[0]
       if arg.include?(:+)
         my_each { |i| acc += i }
       else
         acc = 1
         my_each { |i| acc *= i }
       end
+      result = acc
     end
-    acc
+    result
   end
 end
 
