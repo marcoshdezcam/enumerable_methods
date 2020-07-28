@@ -15,12 +15,14 @@ test_range = 5...10
 test_hash = { name: 'Ruby', age: '25', height: '10' }
 
 puts %(--> TEST_RANGE -- )
-puts t_comp
+puts %(bloque)
+puts t_comp 
 p test_range.m_ruby {  |sum, n| sum + n }
 puts %()
 puts t_name
 p test_range.m_ours {  |sum, n| sum + n }
 puts %()
+puts %(argumento)
 puts t_comp
 p test_range.m_ruby(:+)
 puts %()
@@ -28,17 +30,19 @@ puts t_name
 p test_range.m_ours(:+)
 puts %()
 puts t_comp
-p test_range.m_ruby(10, :+)
-puts %()
-puts t_name
-p test_range.m_ours(10, :+)
-puts %()
-puts t_comp
 p test_range.m_ruby(:*)
 puts %()
 puts t_name
 p test_range.m_ours(:*)
 puts %()
+puts %(dos argumentos)
+puts t_comp
+p test_range.m_ruby(10, :+)
+puts %()
+puts t_name
+p test_range.m_ours(10, :+)
+puts %()
+puts %(bloque y argumento)
 puts t_comp
 p test_range.m_ruby(5) { |product, n| product * n }
 puts %()
