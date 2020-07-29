@@ -61,7 +61,7 @@ module Enumerable
         my_each { |i| flag += 1 unless i.nil? || i == false }
       end
     when false
-      my_each { |i| flag += 1 if i.eql?(args[0]) }
+      my_each { |i| flag += 1 if i.is_a?(args[0]) }
     end
     return true if flag == size
     return false if flag != size
