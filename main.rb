@@ -53,15 +53,25 @@ module Enumerable
 
   def my_all?(*args)
     flag = 0
+    i = 0
+    arr = self
+    is_a?(Range) || is_a?(Hash) ? arr = arr.to_a : nil
+
+  
     case args.empty?
     when true
       if block_given?
-        my_each { |i| flag += 1 if yield(i) }
+   
+        blk = yield(arr.at(i))
+        arr.my_each { |i| flag += 1 if blk == true }
+      # elsif is_a?(Range)
+      #   blk = yield(arr[i])
+      #   my_each { |i| flag += 1 if blk == true }
       else
-        my_each { |i| flag += 1 unless i.nil? || i == false }
+        arr.my_each { |i| flag += 1 unless i.nil? || i == false }
       end
     when false
-      my_each { |i| flag += 1 if i.is_a?(args[0]) }
+      arr.my_each { |i| flag += 1 if i.is_a?(args[0]) }
     end
     return true if flag == size
     return false if flag != size
