@@ -56,17 +56,11 @@ module Enumerable
     i = 0
     arr = self
     is_a?(Range) || is_a?(Hash) ? arr = arr.to_a : nil
-
-  
     case args.empty?
     when true
       if block_given?
-   
         blk = yield(arr.at(i))
         arr.my_each { |i| flag += 1 if blk == true }
-      # elsif is_a?(Range)
-      #   blk = yield(arr[i])
-      #   my_each { |i| flag += 1 if blk == true }
       else
         arr.my_each { |i| flag += 1 unless i.nil? || i == false }
       end
