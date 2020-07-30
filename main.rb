@@ -92,9 +92,8 @@ module Enumerable
     counter = 0
     case !block_given?
     when true
-      p %(a)
       if args.empty?
-        my_each { |i| counter += 1 if i == true }
+        my_each { |i| counter += 1 if i != true }
       else
         my_each { |i| counter += 1 if i == args[0] || i.is_a?(args[0]) }
       end
