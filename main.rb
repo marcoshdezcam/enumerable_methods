@@ -82,7 +82,7 @@ module Enumerable
         my_each { |i| flag += 1 unless i.nil? || i == false }
       end
     when false
-      my_each { |i| flag += 1 if i.eql?(args[0]) }
+      my_each { |i| flag += 1 if i.is_a?(args[0]) }
     end
     return true if flag.positive?
     return false if flag <= 0
@@ -92,10 +92,11 @@ module Enumerable
     counter = 0
     case !block_given?
     when true
+      p %(a)
       if args.empty?
         my_each { |i| counter += 1 if i == true }
       else
-        my_each { |i| counter += 1 if i == args[0] || i.equal?(args[0]) }
+        my_each { |i| counter += 1 if i == args[0] || i.is_a?(args[0]) }
       end
     when false
       my_each { |i| counter += 1 if yield(i) == true }
