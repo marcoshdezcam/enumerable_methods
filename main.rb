@@ -63,7 +63,7 @@ module Enumerable
         blk = yield(arr.at(i))
         arr.my_each { flag += 1 if blk == true }
       else
-        arr.my_each { flag += 1 unless i.nil? || i == false }
+        arr.my_each { flag += 1 unless i.nil? || arr.at(i) == false }
       end
     when false
       arr.my_each { flag += 1 if i.is_a?(args[0]) }
