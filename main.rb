@@ -39,9 +39,7 @@ module Enumerable
   def my_all?(*args)
     flag = 0
     i = 0
-
-    arr = self
-    is_a?(Range) || is_a?(Hash) ? arr = arr.to_a : nil
+    self.class == Hash || self.class == Range ? arr = to_a : arr = self
     case args.empty?
     when true
       if block_given?
@@ -51,14 +49,15 @@ module Enumerable
         arr.my_each { flag += 1 unless i.nil? || arr.at(i) == false }
       end
     when false
-      if args[0].class != Regexp
-        arr.my_each { |itr| flag += 1 if itr.class == args[0] }
+      if args[0].class == Regexp
+        arr.my_each { |itr| flag += 1 if itr =~ args[0] } # Regular expresions    
+      elsif args[0].class == Class
+        arr.my_each { |itr| itr.is_a?(args[0]) ? flag += 1 : nil }
       else
-        arr.my_each { |itr| flag += 1 if itr =~ args[0] }
+        arr.my_each { |itr| flag += 1 if args[0] == itr }
       end
     end
-    return true if flag == size
-    return false if flag != size
+    flag == size
   end
 
   def my_any?(*args)
