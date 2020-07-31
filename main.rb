@@ -30,19 +30,9 @@ module Enumerable
   def my_select
     return to_enum(:my_select) unless block_given?
 
-    item = []
-    arr = self
-    tarr = []
-    if arr.class == Hash
-      arr.my_each { |key, _value| tarr << key }
-    else
-      tarr = arr.to_a
-    end
-    i = 0
-    while i < tarr.size
-      yield(tarr[i]) ? item << tarr[i] : nil
-      i += 1
-    end
+    self.class == Hash ? item = {} : item = []
+    my_each { |i| item << i if yield(i) } if self.class != Hash
+    my_each_with_index { |k, v| item << k[0] if yield(k[0]) } if self.class == Hash
     item
   end
 
