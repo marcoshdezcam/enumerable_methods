@@ -1,4 +1,4 @@
-# rubocop: disable Metrics/ModuleLength
+# rubocop: disable Metrics/ModuleLength, Style/ConditionalAssignment
 # rubocop: disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
 module Enumerable
   def my_each
@@ -32,7 +32,7 @@ module Enumerable
 
     self.class == Hash ? item = {} : item = []
     my_each { |i| item << i if yield(i) } if self.class != Hash
-    my_each_with_index { |k, v| item << k[0] if yield(k[0]) } if self.class == Hash
+    my_each_with_index { |k| item << k[0] if yield(k[0]) } if self.class == Hash
     item
   end
 
@@ -52,9 +52,9 @@ module Enumerable
       end
     when false
       if args[0].class != Regexp
-        arr.my_each { |itr|flag += 1 if itr.class == args[0]}
+        arr.my_each { |itr| flag += 1 if itr.class == args[0] }
       else
-        arr.my_each {|itr| flag += 1 if itr =~ args[0]}
+        arr.my_each { |itr| flag += 1 if itr =~ args[0] }
       end
     end
     return true if flag == size
@@ -139,7 +139,7 @@ module Enumerable
   end
 end
 
-# rubocop: enable Metrics/ModuleLength
+# rubocop: enable Metrics/ModuleLength, Style/ConditionalAssignment
 # rubocop: enable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
 
 def multiply_els(array)
