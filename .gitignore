@@ -1,2 +1,3 @@
 .vscode/settings.json
 test_*.rb
+tests.rb
