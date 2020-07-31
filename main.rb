@@ -50,8 +50,7 @@ module Enumerable
       end
     when false
       if args[0].class == Regexp
-        arr.my_each { |itr| flag += 1 if itr =~ args[0] } # Regular expresions    
-      elsif args[0].class == Class
+        arr.my_each { |itr| flag += 1 if itr =~ args[0] }
         arr.my_each { |itr| itr.is_a?(args[0]) ? flag += 1 : nil }
       else
         arr.my_each { |itr| flag += 1 if args[0] == itr }
