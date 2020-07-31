@@ -5,13 +5,9 @@ module Enumerable
     return to_enum(:my_each) unless block_given?
 
     i = 0
-    arr = to_a if self.class == Hash || self.class == Range
+    self.class == Hash || self.class == Range ? arr = to_a : arr = self
     while i < size
-      if self.class == Hash || self.class == Range
-        yield(arr.at(i))
-      else
-        yield(at(i))
-      end
+      yield(arr[i])
       i += 1
     end
     self
