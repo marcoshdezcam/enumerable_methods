@@ -16,12 +16,11 @@ module Enumerable
   def my_each_with_index(*arg)
     return to_enum(:my_each_with_index) unless block_given? && arg.empty?
 
+    arr = to_a
     index = 0
-    arr = self
-    tarr = arr.to_a
     i = 0
     while i < arr.size
-      yield(tarr[i], index)
+      yield(arr[i], index)
       index += 1
       i += 1
     end
