@@ -51,6 +51,7 @@ module Enumerable
     when false
       if args[0].class == Regexp
         arr.my_each { |itr| flag += 1 if itr =~ args[0] }
+      elsif args[0].class == Class
         arr.my_each { |itr| itr.is_a?(args[0]) ? flag += 1 : nil }
       else
         arr.my_each { |itr| flag += 1 if args[0] == itr }
@@ -69,26 +70,36 @@ module Enumerable
         my_each { |i| flag += 1 unless i.nil? || i == false }
       end
     when false
-      my_each { |i| flag += 1 if i.is_a?(args[0]) }
+      if args[0].class == Regexp
+        my_each { |itr| flag += 1 if itr =~ args[0] }
+      elsif args[0].class == Class
+        my_each { |itr| itr.is_a?(args[0]) ? flag += 1 : nil }
+      else
+        my_each { |itr| flag += 1 if args[0] == itr }
+      end
     end
     return true if flag.positive?
     return false if flag <= 0
   end
 
   def my_none?(*args)
-    counter = 0
+    flag = 0
     case !block_given?
     when true
       if args.empty?
-        my_each { |i| counter += 1 if i != true }
+        my_each { |i| flag += 1 if i != true && i != false }
+      elsif args[0].class == Regexp
+        my_each { |itr| flag += 1 if itr =~ args[0] }
+      elsif args[0].class == Class
+        my_each { |itr| itr.is_a?(args[0]) ? flag += 1 : nil }
       else
-        my_each { |i| counter += 1 if i == args[0] || i.is_a?(args[0]) }
+        my_each { |itr| flag += 1 if args[0] == itr }
       end
     when false
-      my_each { |i| counter += 1 if yield(i) == true }
+      my_each { |i| flag += 1 if yield(i) == true }
     end
-    return true if counter.zero?
-    return false if counter.positive?
+    return true if flag.zero?
+    return false if flag.positive?
   end
 
   def my_count(*arg)
