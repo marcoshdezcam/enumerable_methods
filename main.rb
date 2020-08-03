@@ -38,15 +38,16 @@ module Enumerable
 
   def my_all?(*args)
     flag = 0
-    i = 0
     self.class == Hash || self.class == Range ? arr = to_a : arr = self
     case args.empty?
     when true
       if block_given?
-        blk = yield(arr.at(i))
-        arr.my_each { flag += 1 if blk == true }
+        arr.my_each do |i|
+          break if yield(i).nil? || yield(i) == false
+          flag += 1 if yield(i) != false || yield(i).nil?
+        end
       else
-        arr.my_each { flag += 1 unless i.nil? || (arr.at(i) == false || arr.at(i).nil?) }
+        arr.my_each { |i| flag += 1 unless i.nil? || i == false }
       end
     when false
       if args[0].class == Regexp
