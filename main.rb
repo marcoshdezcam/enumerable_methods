@@ -44,6 +44,7 @@ module Enumerable
       if block_given?
         arr.my_each do |i|
           break if yield(i).nil? || yield(i) == false
+
           flag += 1 if yield(i) != false || yield(i).nil?
         end
       else
@@ -79,8 +80,7 @@ module Enumerable
         my_each { |itr| flag += 1 if args[0] == itr }
       end
     end
-    return true if flag.positive?
-    return false if flag.zero?
+    flag.positive?
   end
 
   def my_none?(*args)
