@@ -52,7 +52,7 @@ module Enumerable
       if args[0].class == Regexp
         arr.my_each { |itr| flag += 1 if itr =~ args[0] }
       elsif args[0].class == Class
-        arr.my_each { |itr| itr.is_a?(args[0]) ? flag += 1 : nil }
+        arr.my_each { |itr| flag += 1 if itr.is_a?(args[0]) }
       else
         arr.my_each { |itr| flag += 1 if args[0] == itr }
       end
@@ -73,13 +73,13 @@ module Enumerable
       if args[0].class == Regexp
         my_each { |itr| flag += 1 if itr =~ args[0] }
       elsif args[0].class == Class
-        my_each { |itr| itr.is_a?(args[0]) ? flag += 1 : nil }
+        my_each { |itr| flag += 1 if itr.is_a?(args[0]) }
       else
         my_each { |itr| flag += 1 if args[0] == itr }
       end
     end
     return true if flag.positive?
-    return false if flag <= 0
+    return false if flag.zero?
   end
 
   def my_none?(*args)
@@ -91,7 +91,7 @@ module Enumerable
       elsif args[0].class == Regexp
         my_each { |itr| flag += 1 if itr =~ args[0] }
       elsif args[0].class == Class
-        my_each { |itr| itr.is_a?(args[0]) ? flag += 1 : nil }
+        my_each { |itr| flag += 1 if itr.is_a?(args[0]) }
       else
         my_each { |itr| flag += 1 if args[0] == itr }
       end
