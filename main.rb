@@ -85,22 +85,21 @@ module Enumerable
 
   def my_none?(*args)
     flag = 0
-    case !block_given?
+    case block_given?
     when true
-      if args.empty?
-        my_each { |i| flag += 1 if i != true || i != false }
-      elsif args[0].class == Regexp
-        my_each { |itr| flag += 1 if itr =~ args[0] }
-      elsif args[0].class == Class
-        my_each { |itr| flag += 1 if itr.is_a?(args[0]) }
-      else
-        my_each { |itr| flag += 1 if args[0] == itr }
-      end
-    when false
       my_each { |i| flag += 1 if yield(i) == true }
+    when false
+      if args.empty?
+        my_each { |i| flag += 1 if i == true || !i.to_s.empty? }
+      elsif args[0].class == Regexp
+        my_each { |i| flag += 1 if i =~ args[0] }
+      elsif args[0].class == Class
+        my_each { |i| flag += 1 if i.is_a?(args[0]) }
+      else
+        my_each { |i| flag += 1 if i == args[0] }
+      end
     end
-    return true if flag.zero?
-    return false if flag.positive?
+    flag.zero?
   end
 
   def my_count(*arg)
