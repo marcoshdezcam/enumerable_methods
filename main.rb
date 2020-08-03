@@ -1,5 +1,5 @@
 # rubocop: disable Metrics/ModuleLength, Style/ConditionalAssignment
-# rubocop: disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
+# rubocop: disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity, Metrics/MethodLength 
 module Enumerable
   def my_each
     return to_enum(:my_each) unless block_given?
@@ -119,21 +119,25 @@ module Enumerable
   end
 
   def my_map(*arg)
-    case block_given?
+    return to_enum(:my_map) unless block_given?
+
+    case block_given? && arg.empty?
     when true
       new_array = []
       my_each do |i|
         new_array << yield(i)
       end
       new_array
-    when false && !arg.empty?
-      proc { arg }
-    when false && arg.empty?
-      return to_enum(:my_map) unless block_given?
+    when (true && !arg.empty?) && false
+      if arg[0].class == Regexp
+        my_each { |i| yield(i) ? new_array << proc { arg } : nil }
+      else
+        proc { arg }
+      end
     end
   end
 
-  def my_inject(arg = nil, sim = nil)
+  def my_inject(arg = nil, sim = nil, &block)
     if block_given?
       acc = arg
       my_each { |i| acc = acc.nil? ? i : yield(acc, i) }
@@ -143,13 +147,16 @@ module Enumerable
     elsif !sim.nil? && sim.is_a?(Symbol)
       acc = arg
       my_each { |i| acc = acc.nil? ? i : acc.send(sim, i) }
+    else
+      yield
     end
-    acc
+
+    
   end
 end
 
 # rubocop: enable Metrics/ModuleLength, Style/ConditionalAssignment
-# rubocop: enable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
+# rubocop: enable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity, Metrics/MethodLength 
 
 def multiply_els(array)
   array.my_inject(:*)
