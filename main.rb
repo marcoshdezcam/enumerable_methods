@@ -1,5 +1,5 @@
 # rubocop: disable Metrics/ModuleLength, Style/ConditionalAssignment
-# rubocop: disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity, Metrics/MethodLength 
+# rubocop: disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity, Metrics/MethodLength
 module Enumerable
   def my_each
     return to_enum(:my_each) unless block_given?
@@ -137,7 +137,7 @@ module Enumerable
     end
   end
 
-  def my_inject(arg = nil, sim = nil, &block)
+  def my_inject(arg = nil, sim = nil)
     if block_given?
       acc = arg
       my_each { |i| acc = acc.nil? ? i : yield(acc, i) }
@@ -150,13 +150,11 @@ module Enumerable
     else
       yield
     end
-
-    
   end
 end
 
 # rubocop: enable Metrics/ModuleLength, Style/ConditionalAssignment
-# rubocop: enable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity, Metrics/MethodLength 
+# rubocop: enable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity, Metrics/MethodLength
 
 def multiply_els(array)
   array.my_inject(:*)
