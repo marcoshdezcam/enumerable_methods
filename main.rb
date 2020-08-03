@@ -46,7 +46,7 @@ module Enumerable
         blk = yield(arr.at(i))
         arr.my_each { flag += 1 if blk == true }
       else
-        arr.my_each { flag += 1 unless i.nil? || arr.at(i) == false }
+        arr.my_each { flag += 1 unless i.nil? || (arr.at(i) == false || arr.at(i).nil?) }
       end
     when false
       if args[0].class == Regexp
@@ -87,7 +87,7 @@ module Enumerable
     case !block_given?
     when true
       if args.empty?
-        my_each { |i| flag += 1 if i != true && i != false }
+        my_each { |i| flag += 1 if i != true || i != false }
       elsif args[0].class == Regexp
         my_each { |itr| flag += 1 if itr =~ args[0] }
       elsif args[0].class == Class
@@ -141,12 +141,15 @@ module Enumerable
     if block_given?
       acc = arg
       my_each { |i| acc = acc.nil? ? i : yield(acc, i) }
+      acc
     elsif !arg.nil? && arg.is_a?(Symbol)
       acc = nil
       my_each { |i| acc = acc.nil? ? i : acc.send(arg, i) }
+      acc
     elsif !sim.nil? && sim.is_a?(Symbol)
       acc = arg
       my_each { |i| acc = acc.nil? ? i : acc.send(sim, i) }
+      acc
     else
       yield
     end
