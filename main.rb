@@ -121,22 +121,20 @@ module Enumerable
   def my_map(*arg)
     return to_enum(:my_map) unless block_given?
 
-    case block_given? && arg.empty?
-    when true
-      p %(1)
-      new_array = []
-      my_each do |i|
-        new_array << yield(i)
-      end
-      new_array
-    when (true && !arg.empty?) && false
-      p %(2)
+    new_array = []
+    case block_given?
+    when true && !arg.empty?
       if arg[0].class == Regexp
         my_each { |i| yield(i) ? new_array << proc { arg } : nil }
       else
-        proc { arg }
+        my_each { |i| new_array << i if arg[0].call(i) == true }
+      end
+    when true
+      my_each do |i|
+        new_array << yield(i)
       end
     end
+    new_array
   end
 
   def my_inject(arg = nil, sim = nil)
