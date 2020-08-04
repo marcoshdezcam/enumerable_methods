@@ -12,7 +12,7 @@
 - #my_inject
 - #multiply_els
 
-![screenshot](./app_screenshot.png)
+
 
 Additional description about the project and its features.
 
@@ -22,7 +22,7 @@ Additional description about the project and its features.
 
 ## Live Demo
 
-[Live Demo Link](https://livedemo.com)
+[Live Demo Link](https://repl.it/@SigmaSam/Enumerable-Methods)
 
 
 ## Getting Started
