@@ -62,12 +62,12 @@ module Enumerable
     flag == size
   end
 
-  def my_any?(*args)
+  def my_any?(*args, &block)
     flag = 0
     case args.empty?
     when true
       if block_given?
-        my_each { |i| flag += 1 if yield(i) }
+        my_each { |i| flag += 1 if block.call(i) }
       else
         my_each { |i| flag += 1 unless i.nil? || i == false }
       end
@@ -83,23 +83,8 @@ module Enumerable
     flag.positive?
   end
 
-  def my_none?(*args)
-    flag = 0
-    case block_given?
-    when true
-      my_each { |i| flag += 1 if yield(i) == true }
-    when false
-      if args.empty?
-        my_each { |i| flag += 1 if i == true || !i.to_s.empty? }
-      elsif args[0].class == Regexp
-        my_each { |i| flag += 1 if i =~ args[0] }
-      elsif args[0].class == Class
-        my_each { |i| flag += 1 if i.is_a?(args[0]) }
-      else
-        my_each { |i| flag += 1 if i == args[0] }
-      end
-    end
-    flag.zero?
+  def my_none?(*args, &block)
+    !my_any?(*args, &block)
   end
 
   def my_count(*arg)
