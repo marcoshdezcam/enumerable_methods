@@ -112,7 +112,7 @@ module Enumerable
       if arg[0].class == Regexp
         my_each { |i| yield(i) ? new_array << proc { arg } : nil }
       else
-        my_each { |i| new_array << i if arg[0].call(i) == true }
+        my_each { |i| new_array << arg[0].call(i) }
       end
     when true
       my_each do |i|
