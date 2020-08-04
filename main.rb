@@ -123,12 +123,14 @@ module Enumerable
 
     case block_given? && arg.empty?
     when true
+      p %(1)
       new_array = []
       my_each do |i|
         new_array << yield(i)
       end
       new_array
     when (true && !arg.empty?) && false
+      p %(2)
       if arg[0].class == Regexp
         my_each { |i| yield(i) ? new_array << proc { arg } : nil }
       else
