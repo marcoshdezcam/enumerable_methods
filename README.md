@@ -12,37 +12,13 @@
 - #my_inject
 - #multiply_els
 
-![screenshot](./app_screenshot.png)
-
-Additional description about the project and its features.
-
 ## Built With
 
 - Ruby
 
 ## Live Demo
 
-[Live Demo Link](https://livedemo.com)
-
-
-## Getting Started
-
-**Instructions to run the methods**
-
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-### Setup
-
-### Install
-
-### Usage
-
-### Run tests
-
-### Deployment
-
+[Live Demo Link](https://repl.it/join/wtscdvoa-marcoshdezcam1)
 
 
 ## Authors
@@ -64,9 +40,6 @@ Feel free to check the [issues page](issues/).
 ## Show your support
 
 Give a ⭐️ if you like this project!
-
-## Acknowledgments
-
 
 ## 📝 License
 
