@@ -105,7 +105,7 @@ module Enumerable
 
   def my_map(my_proc = nil)
     return to_enum(__method__) if !block_given? && my_proc.nil?
-  
+
     n_arr = []
     each { |element| n_arr << my_proc.call(element) } unless my_proc.nil?
     each { |element| n_arr << yield(element) } if block_given? && my_proc.nil?

@@ -72,11 +72,11 @@ describe Enumerable do
 
     context 'When a block is given' do
       it 'Returns an array containing all elements that were true for the given block.' do
-        expect(arr_num.my_select { |i| i == 2 }).to eql[2]
+        expect(arr_num.my_select { |i| i == 2 }).to eql([2])
       end
 
       it 'Returns an array containing all elements that were true, for a range.' do
-        expect(ran.my_select { |i| i == 2 }).to eql[2]
+        expect(ran.my_select { |i| i == 2 }).to eql([2])
       end
     end
 
@@ -180,7 +180,7 @@ describe Enumerable do
     end
     context 'When a block is given' do
       it 'it counts the number of elements yielding a true value.' do
-        expect(arr_num.my_count { |x| x == 2 }).to eql(2)
+        expect(arr_num.my_count { |x| x == 2 }).to eql(1)
       end
     end
     context 'When the input is not an Enumerable' do
