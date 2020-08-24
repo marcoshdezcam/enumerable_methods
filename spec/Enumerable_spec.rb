@@ -106,4 +106,46 @@ describe Enumerable do
       end
     end
   end
+
+  describe 'my_any?' do
+    context 'When block is no given' do
+      it 'returns true if at least one element of the array is true' do
+        expect(arr_num.my_any?).to be(true)
+      end
+      it 'returns false if none of the element are true' do
+        expect(arr_num.my_any?(String)).to be(false)
+      end
+    end
+    context 'When block is given' do
+      it 'returns true if any element pass block condition' do
+        expect(arr_string.my_any?{ |word| word.length >= 3 }).to be(true)
+      end
+
+      it 'returns false if no element pass block condition' do
+        expect(arr_string.my_any?{ |word| word.length < 3 }).to be(false)
+      end
+
+    end
+  end
+
+  describe 'my_none?' do
+    context 'When block is no given' do
+      it 'returns false if at least one element is true' do
+        expect(arr_num.my_none?).to be(false)
+      end
+      it 'returns true none of the elements are true' do
+        expect(arr_num.my_none?(String)).to be(true)
+      end
+    end
+    context 'When block is given' do
+      it 'returns true if none of the elements pass block condition' do
+        expect(arr_string.my_none?{ |word| word.length == 5 }).to be(true)
+      end
+
+      it 'returns false if at least 1 element pass block condition' do
+        expect(arr_string.my_none?{ |word| word.length == 3 }).to be(false)
+      end
+
+    end
+  end
 end
