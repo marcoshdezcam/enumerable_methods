@@ -81,4 +81,29 @@ describe Enumerable do
       end
     end
   end
+
+  describe 'my_all?' do
+    context 'When no block is given' do
+      it 'return true when none of the collection members are false or nil.'do
+        expect(arr_num.my_all?).to be(true)
+      end
+      it 'returns false if not all elements are equal to the argument' do 
+        expect(arr_string.my_all?(/t/)).to be(false)
+      end
+
+      it 'returns true if all elements are equal to the argument' do 
+        expect(arr_num.my_all?(Numeric)).to be(true)
+      end
+    end
+
+    context 'When a block is given' do
+      it 'The method returns true if the block never returns false or nil' do
+        expect(arr_string.my_all? { |word| word.length >= 3 }).to be(true)
+      end
+
+      it 'The method returns false if the block ever returns false or nil' do
+        expect(arr_string.my_all? { |word| word.length <= 3 }).to be(false)
+      end
+    end
+  end
 end
