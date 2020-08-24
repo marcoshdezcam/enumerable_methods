@@ -180,7 +180,7 @@ describe Enumerable do
     end
     context 'When a block is given' do
       it 'it counts the number of elements yielding a true value.' do
-        expect(arr_num.my_count { |x| x.even? }).to eql(2)
+        expect(arr_num.my_count { |x| x == 2 }).to eql(2)
       end
     end
     context 'When the input is not an Enumerable' do
