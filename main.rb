@@ -103,23 +103,13 @@ module Enumerable
     end
   end
 
-  def my_map(*arg)
-    return to_enum(:my_map) unless block_given?
-
-    new_array = []
-    case block_given?
-    when true && !arg.empty?
-      if arg[0].class == Regexp
-        my_each { |i| yield(i) ? new_array << proc { arg } : nil }
-      else
-        my_each { |i| new_array << arg[0].call(i) }
-      end
-    when true
-      my_each do |i|
-        new_array << yield(i)
-      end
-    end
-    new_array
+  def my_map(my_proc = nil)
+    return to_enum(__method__) if !block_given? && my_proc.nil?
+  
+    n_arr = []
+    each { |element| n_arr << my_proc.call(element) } unless my_proc.nil?
+    each { |element| n_arr << yield(element) } if block_given? && my_proc.nil?
+    n_arr
   end
 
   def my_inject(arg = nil, sim = nil)
