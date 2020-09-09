@@ -8,19 +8,19 @@ describe Enumerable do
 
   describe %(#my_each) do
     it %(Prints array elements) do
-      expect { array.my_each { |x| puts x } }.to output("1\n2\n3\n4\n5\n6\n7\n").to_stdout
+      expect { array.my_each { |item| puts item } }.to output("1\n2\n3\n4\n5\n6\n7\n").to_stdout
     end
 
     it %(Prints the elements in the range) do
-      expect { range.my_each { |x| puts x } }.to output("1\n2\n3\n4\n5\n6\n7\n").to_stdout
+      expect { range.my_each { |item| puts item } }.to output("1\n2\n3\n4\n5\n6\n7\n").to_stdout
     end
 
     it %(Prints the values in a hash) do
-      expect { hash.my_each { |_k, v| puts v } }.to output("1\n2\n3\n4\n5\n6\n7\n").to_stdout
+      expect { hash.my_each { |_key, value| puts value } }.to output("1\n2\n3\n4\n5\n6\n7\n").to_stdout
     end
 
     it %(Prints the keys in a hash) do
-      expect { hash.my_each { |k, _v| puts k } }.to output("1\n2\n3\n4\n5\n6\n7\n").to_stdout
+      expect { hash.my_each { |key, _value| puts key } }.to output("1\n2\n3\n4\n5\n6\n7\n").to_stdout
     end
 
     it %(Check if returns the enumerator) do
@@ -28,7 +28,21 @@ describe Enumerable do
     end
 
     it %(Prints the elements in the array of strings) do
-      expect { array_of_strings.my_each { |x| puts x } }.to output("Hello\nWorld\nRuby\nCeci\nMarcos\n").to_stdout
+      expect { array_of_strings.my_each { |item| puts item } }.to output("Hello\nWorld\nRuby\nCeci\nMarcos\n").to_stdout
     end
   end
+
+  describe %(#my_each_with_index) do
+    it %(Prints array elements) do
+      expected = "item: 1 index: 0\n"\
+      "item: 2 index: 1\n"\
+      "item: 3 index: 2\n"\
+      "item: 4 index: 3\n"\
+      "item: 5 index: 4\n"\
+      "item: 6 index: 5\n"\
+      "item: 7 index: 6\n"
+      expect { array.my_each_with_index { |x, i| puts "item: #{x} index: #{i}" } }.to output(expected).to_stdout
+    end
+  end
+
 end
