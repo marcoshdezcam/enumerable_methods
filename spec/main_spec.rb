@@ -33,7 +33,7 @@ describe Enumerable do
   end
 
   describe %(#my_each_with_index) do
-    it %(Prints array elements) do
+    it %(Prints array elements and the index) do
       expected = "item: 1 index: 0\n"\
       "item: 2 index: 1\n"\
       "item: 3 index: 2\n"\
@@ -42,7 +42,28 @@ describe Enumerable do
       "item: 6 index: 5\n"\
       "item: 7 index: 6\n"
       expect { array.my_each_with_index { |x, i| puts "item: #{x} index: #{i}" } }.to output(expected).to_stdout
+    end 
+
+    it %(Prints the elements in a range and the index) do
+      expected = "item: 1 index: 0\n"\
+      "item: 2 index: 1\n"\
+      "item: 3 index: 2\n"\
+      "item: 4 index: 3\n"\
+      "item: 5 index: 4\n"\
+      "item: 6 index: 5\n"\
+      "item: 7 index: 6\n"
+      expect { range.my_each_with_index { |x, i| puts "item: #{x} index: #{i}" } }.to output(expected).to_stdout
+    end
+
+    it %(Prints the key value pairs in a hash and the index) do 
+      expected = "key and value: [1, 1] index: 0\n"\
+      "key and value: [2, 2] index: 1\n"\
+      "key and value: [3, 3] index: 2\n"\
+      "key and value: [4, 4] index: 3\n"\
+      "key and value: [5, 5] index: 4\n"\
+      "key and value: [6, 6] index: 5\n"\
+      "key and value: [7, 7] index: 6\n"
+      expect { hash.my_each_with_index { |kv, i| puts "key and value: #{kv} index: #{i}" } }.to output(expected).to_stdout
     end
   end
-
 end
