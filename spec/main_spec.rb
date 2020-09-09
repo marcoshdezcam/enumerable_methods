@@ -65,5 +65,16 @@ describe Enumerable do
       "key and value: [7, 7] index: 6\n"
       expect { hash.my_each_with_index { |kv, i| puts "key and value: #{kv} index: #{i}" } }.to output(expected).to_stdout
     end
+
+    it %(Check if returns the enumerator) do
+      expect(array.my_each_with_index).to be_an_instance_of Enumerator
+    end
+
+    it %(Prints the elements in the array of strings with their respected indexes) do
+      expected = 
+      "Hello in position 0\nWorld in position 1\nRuby in position 2\n"\
+      "Ceci in position 3\nMarcos in position 4\n"
+      expect { array_of_strings.my_each_with_index { |x, i| puts "#{x} in position #{i}" } }.to output(expected).to_stdout
+    end
   end
 end
