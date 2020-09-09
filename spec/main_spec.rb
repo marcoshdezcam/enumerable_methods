@@ -14,8 +14,12 @@ describe Enumerable do
       expect { range.my_each { |x| puts x } }.to output("1\n2\n3\n4\n5\n6\n7\n").to_stdout
     end 
 
-    it 'Printing the elements in a hash' do
+    it 'Printing the values in a hash' do
       expect { hash.my_each { |k, v| puts v } }.to output("1\n2\n3\n4\n5\n6\n7\n").to_stdout
+    end 
+
+    it 'Printing the keys in a hash' do
+      expect { hash.my_each { |k, v| puts k } }.to output("1\n2\n3\n4\n5\n6\n7\n").to_stdout
     end
   end
 end
