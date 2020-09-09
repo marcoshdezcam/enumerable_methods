@@ -21,5 +21,9 @@ describe Enumerable do
     it 'Printing the keys in a hash' do
       expect { hash.my_each { |k, v| puts k } }.to output("1\n2\n3\n4\n5\n6\n7\n").to_stdout
     end
+
+    it 'Check if returns the enumerator' do
+      expect(array.my_each).to be_an_instance_of Enumerator
+    end
   end
 end
