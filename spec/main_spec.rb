@@ -310,5 +310,9 @@ describe Enumerable do
     it %(Return a string that contains the key and value of the hash) do
       expect(hash_strings.my_map { |k, v| "#{k} is #{v}" }).to eql(['girl is pink', 'boy is blue', 'alien is green'])
     end
+
+    it %(Returns the Regexp repeated 3 times ) do
+      expect(array_all_cecis.my_map { /C/ }).to eql([/C/, /C/, /C/])
+    end
   end
 end
