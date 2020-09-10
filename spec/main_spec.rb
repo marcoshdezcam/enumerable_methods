@@ -77,4 +77,10 @@ describe Enumerable do
       expect { array_of_strings.my_each_with_index { |x, i| puts "#{x} in position #{i}" } }.to output(expected).to_stdout
     end
   end
+
+  describe "#my_select" do 
+    it "Returs the Enumerator" do
+      expect(range.my_select).to be_an_instance_of Enumerator
+    end
+  end
 end
