@@ -198,6 +198,14 @@ describe Enumerable do
     it %(Return true if at least one of the elements in the array is truthy or valid) do
       expect(array_falsy_int.my_any?).to eql(true)
     end
+
+    it %(Return true if one of the elements is number 1) do
+      expect(array.my_any?(1)).to eql(true)
+    end
+
+    it %(Return false if none of the elements is number 1) do
+      expect(array_false.my_any?(1)).to eql(false)
+    end
   end
 end
 
