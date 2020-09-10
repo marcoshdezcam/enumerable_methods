@@ -1,10 +1,9 @@
-# frozen_string_literal: true
 require 'rubygems'
 require 'bundler/setup'
 
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-git_source(:github) { |repo_name| "https://github.com/marcoshdezcam/enumerable_methods" }
+git_source(:github) { |_repo_name| 'https://github.com/marcoshdezcam/enumerable_methods' }
 
 # gem "rails"
 gem 'rubocop', '~>0.81.0'

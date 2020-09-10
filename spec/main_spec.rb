@@ -42,7 +42,7 @@ describe Enumerable do
       "item: 6 index: 5\n"\
       "item: 7 index: 6\n"
       expect { array.my_each_with_index { |x, i| puts "item: #{x} index: #{i}" } }.to output(expected).to_stdout
-    end 
+    end
 
     it %(Prints the elements in a range and the index) do
       expected = "item: 1 index: 0\n"\
@@ -55,7 +55,7 @@ describe Enumerable do
       expect { range.my_each_with_index { |x, i| puts "item: #{x} index: #{i}" } }.to output(expected).to_stdout
     end
 
-    it %(Prints the key value pairs in a hash and the index) do 
+    it %(Prints the key value pairs in a hash and the index) do
       expected = "key and value: [1, 1] index: 0\n"\
       "key and value: [2, 2] index: 1\n"\
       "key and value: [3, 3] index: 2\n"\
@@ -63,7 +63,11 @@ describe Enumerable do
       "key and value: [5, 5] index: 4\n"\
       "key and value: [6, 6] index: 5\n"\
       "key and value: [7, 7] index: 6\n"
-      expect { hash.my_each_with_index { |kv, i| puts "key and value: #{kv} index: #{i}" } }.to output(expected).to_stdout
+      expect do
+        hash.my_each_with_index do |kv, i|
+          puts "key and value: #{kv} index: #{i}"
+        end
+      end.to output(expected).to_stdout
     end
 
     it %(Check if returns the enumerator) do
@@ -71,28 +75,32 @@ describe Enumerable do
     end
 
     it %(Prints the elements in the array of strings with their respected indexes) do
-      expected = 
-      "Hello in position 0\nWorld in position 1\nRuby in position 2\n"\
-      "Ceci in position 3\nMarcos in position 4\n"
-      expect { array_of_strings.my_each_with_index { |x, i| puts "#{x} in position #{i}" } }.to output(expected).to_stdout
+      expected =
+        "Hello in position 0\nWorld in position 1\nRuby in position 2\n"\
+        "Ceci in position 3\nMarcos in position 4\n"
+      expect do
+        array_of_strings.my_each_with_index do |x, i|
+          puts "#{x} in position #{i}"
+        end
+      end.to output(expected).to_stdout
     end
   end
 
-  describe "#my_select" do 
-    it "Returs the Enumerator" do
+  describe %(#my_select) do
+    it %(Returs the Enumerator) do
       expect(range.my_select).to be_an_instance_of Enumerator
     end
 
-    it "Return an array of integers smaller than 4" do 
+    it %(Return an array of integers smaller than 4) do
       expect(array.my_select { |x| x < 4 }).to eql([1, 2, 3])
     end
 
-    it "Return the even numbers in the range 1 to 7" do
+    it %(Return the even numbers in the range 1 to 7) do
       expect(range.my_select(&:even?)).to eql([2, 4, 6])
     end
 
-    it "Returns an array of strings where every string in less than 5 characters long" do
-      expect(array_of_strings.my_select { |x| x.size < 5 }).to eql(['Ruby', 'Ceci'])
+    it %(Returns an array of strings where every string in less than 5 characters long) do
+      expect(array_of_strings.my_select { |x| x.size < 5 }).to eql(%w[Ruby Ceci])
     end
   end
 end
