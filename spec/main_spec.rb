@@ -9,7 +9,7 @@ describe Enumerable do
   let(:array_false) { [false, 'Ceci', 'Marcos'] }
   let(:array_nil) { [nil, 'Ceci', 'Marcos'] }
   let(:array_all_cecis) { %w[Ceci Ceci Ceci] }
-  let(:array_7s) { [7, 7, 7, 7] }
+  let(:array_same_number) { [7, 7, 7, 7] }
 
   describe %(#my_each) do
     it %(Prints array elements) do
@@ -154,12 +154,23 @@ describe Enumerable do
       expect(array_of_strings.my_all?('Ceci')).to eql(false)
     end
 
-    it %(Returns true when all elements are '7') do
-      expect(array_7s.my_all?(7)).to eql(true)
+    it %(Returns true when all elements are 7) do
+      expect(array_same_number.my_all?(7)).to eql(true)
     end
 
-    it %(Returns false when all elements aren't '7') do
+    it %(Returns false when all elements aren't 7) do
       expect(array.my_all?(7)).to eql(false)
     end
   end
+
+  describe %(#my_any) do
+    it %(Return true when at least on of the strings in the array is grater or equal to 4 characters long) do
+      expect(array_of_strings.my_any? { |x| x.size >= 4 }).to eql(true)
+    end 
+
+    it %(Return false when none of the strings in the array are greater or equal to 7 characters long) do 
+      expect(array_of_strings.my_any? { |x| x.size >= 7 }).to eql(false)
+    end
+  end
 end
+
