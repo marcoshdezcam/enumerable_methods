@@ -9,7 +9,8 @@ describe Enumerable do
   let(:array_false) { [false, 'Ceci', 'Marcos'] }
   let(:array_nil) { [nil, 'Ceci', 'Marcos'] }
   let(:array_all_cecis) { %w[Ceci Ceci Ceci] }
-  let(:array_same_number) { [7, 7, 7, 7] }
+  let(:array_same_number) { [7, 7, 7, 7] } 
+  let(:array_int_float_complex) { [1, 2.5, 3i] }
 
   describe %(#my_each) do
     it %(Prints array elements) do
@@ -178,6 +179,14 @@ describe Enumerable do
 
     it %(Return false if none of the strings in the array has the letter 'z') do
       expect(array_of_strings.my_any?(/z/)).to eql(false)
+    end 
+
+    it %(Return true if at least one of the elements in the array is a Float type) do
+      expect(array_int_float_complex.my_any?(Float)).to eql(true)
+    end
+
+    it %(Return false if none of the elements in the array is a Float type) do
+      expect(array_nums_strings.my_any?(Float)).to eql(false)
     end
   end
 end
