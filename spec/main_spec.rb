@@ -215,4 +215,14 @@ describe Enumerable do
       expect(array_all_cecis.my_any?('Marcos')).to eql(false)
     end
   end
+
+  describe %(#my_none) do
+    it %(Return true when none of the strings in the array are greater or equal to 7 characters long) do
+      expect(array_of_strings.my_none? { |x| x.size >= 7 }).to eql(true)
+    end
+
+    it %(Return false when at least one element in the array is greater or equal to 4 characters long) do
+      expect(array_of_strings.my_none? { |x| x.size >= 4 }).to eql(false)
+    end
+  end
 end
