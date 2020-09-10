@@ -135,5 +135,13 @@ describe Enumerable do
     it %(Returns false when the array has at least one nil value) do
       expect(array_nil.my_all?).to eql(false)
     end
+
+    it %(Returns true when the array doesn't have any false element) do
+      expect(array.my_all?).to eql(true)
+    end
+
+    it %(Returns true when the array doesn't have any nil element) do
+      expect(array_of_strings.my_all?).to eql(true)
+    end
   end
 end
