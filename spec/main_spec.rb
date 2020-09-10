@@ -206,6 +206,14 @@ describe Enumerable do
     it %(Return false if none of the elements is number 1) do
       expect(array_false.my_any?(1)).to eql(false)
     end
+
+    it %(Return true if at least one of the strings in the array is 'Marcos') do
+      expect(array_of_strings.my_any?('Marcos')).to eql(true)
+    end
+
+    it %(Return false if none of the strings in the array is 'Marcos') do
+      expect(array_all_cecis.my_any?('Marcos')).to eql(false)
+    end
   end
 end
 
