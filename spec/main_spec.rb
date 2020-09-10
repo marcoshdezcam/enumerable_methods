@@ -216,7 +216,7 @@ describe Enumerable do
     end
   end
 
-  describe %(#my_none) do
+  describe %(#my_none?) do
     it %(Return true when none of the strings in the array are greater or equal to 7 characters long) do
       expect(array_of_strings.my_none? { |x| x.size >= 7 }).to eql(true)
     end
@@ -255,6 +255,14 @@ describe Enumerable do
 
     it %(Return false if at least one element of the array is 1) do
       expect(array.my_none?(1)).to eql(false)
+    end
+
+    it %(Return true if none of the strings of the array is 'VSCode') do
+      expect(array_of_strings.my_none?('VSCode')).to eql(true)
+    end
+
+    it %(Return false if at least one string of the array is 'Ruby') do
+      expect(array_of_strings.my_none?('Ruby')).to eql(false)
     end
   end
 end
