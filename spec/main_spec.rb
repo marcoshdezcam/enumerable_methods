@@ -332,5 +332,9 @@ describe Enumerable do
     it %(Return the result of the operation defined in the symbol and a factor as an argument) do
       expect(range.my_inject(2, :*)).to eql(10_080)
     end
+
+    it %(Raise error when a block nor an argument are not given) do
+      expect { range.my_inject }.to raise_error(LocalJumpError)
+    end
   end
 end
