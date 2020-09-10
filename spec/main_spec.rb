@@ -11,6 +11,8 @@ describe Enumerable do
   let(:array_all_cecis) { %w[Ceci Ceci Ceci] }
   let(:array_same_number) { [7, 7, 7, 7] } 
   let(:array_int_float_complex) { [1, 2.5, 3i] }
+  let(:array_falsy) { [false, false, nil] }
+  let(:array_falsy_int) { [false, false, nil, 3] }
 
   describe %(#my_each) do
     it %(Prints array elements) do
@@ -187,6 +189,14 @@ describe Enumerable do
 
     it %(Return false if none of the elements in the array is a Float type) do
       expect(array_nums_strings.my_any?(Float)).to eql(false)
+    end
+
+    it %(Return false if each element in the array is falsy) do
+      expect(array_falsy.my_any?).to eql(false)
+    end
+
+    it %(Return true if at least one of the elements in the array is truthy or valid) do
+      expect(array_falsy_int.my_any?).to eql(true)
     end
   end
 end
