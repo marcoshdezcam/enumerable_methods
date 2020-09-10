@@ -214,5 +214,15 @@ describe Enumerable do
     it %(Return false if none of the strings in the array is 'Marcos') do
       expect(array_all_cecis.my_any?('Marcos')).to eql(false)
     end
+  end 
+
+  describe "#my_count" do
+    it "Returns the size of the array" do
+      expect(array.my_count).to eql(7)
+    end
+
+    it "Returns the number of elements inside the range" do
+      expect(range.my_count).to eql(7)
+    end
   end
 end
