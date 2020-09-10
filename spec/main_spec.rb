@@ -287,5 +287,15 @@ describe Enumerable do
     it %(Return the ammount of elements that are smaller than 5) do
       expect(array.my_count { |x| x < 5 }).to eql(4)
     end
+  end 
+
+  describe %(#my_map) do
+    it "Return the square of each element in an array" do
+      expect(range.my_map { |x| x ** 2 }).to eql([1, 4, 9, 16, 25, 36, 49])
+    end
+
+    it "Return an instance of Enumerator when no block is given" do
+      expect(range.my_map).to be_an_instance_of Enumerator
+    end
   end
 end
