@@ -8,6 +8,7 @@ describe Enumerable do
   let(:array_nums_strings) { [1, 10, 50, 'Ceci', 55, 'Marcos'] }
   let(:array_false) { [false, 'Ceci', 'Marcos'] }
   let(:array_nil) { [nil, 'Ceci', 'Marcos'] }
+  let(:array_all_cecis) { %w[Ceci Ceci Ceci] }
 
   describe %(#my_each) do
     it %(Prints array elements) do
@@ -142,6 +143,14 @@ describe Enumerable do
 
     it %(Returns true when the array doesn't have any nil element) do
       expect(array_of_strings.my_all?).to eql(true)
+    end
+
+    it %(Returns true when all elements are 'Ceci') do
+      expect(array_all_cecis.my_all?('Ceci')).to eql(true)
+    end
+
+    it %(Returns false when not all elements are 'Ceci') do
+      expect(array_of_strings.my_all?('Ceci')).to eql(false)
     end
   end
 end
