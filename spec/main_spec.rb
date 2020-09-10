@@ -248,5 +248,13 @@ describe Enumerable do
     it %(Return false if at least one of the elements is truthy) do
       expect(array_falsy_int.my_none?).to eql(false)
     end
+
+    it %(Return true if none of the elements of the array is 10) do
+      expect(array.my_none?(10)).to eql(true)
+    end
+
+    it %(Return false if at least one element of the array is 1) do
+      expect(array.my_none?(1)).to eql(false)
+    end
   end
 end
