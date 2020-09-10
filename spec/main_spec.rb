@@ -225,4 +225,54 @@ describe Enumerable do
       expect(range.my_count).to eql(7)
     end
   end
+
+  describe %(#my_none?) do
+    it %(Return true when none of the strings in the array are greater or equal to 7 characters long) do
+      expect(array_of_strings.my_none? { |x| x.size >= 7 }).to eql(true)
+    end
+
+    it %(Return false when at least one element in the array is greater or equal to 4 characters long) do
+      expect(array_of_strings.my_none? { |x| x.size >= 4 }).to eql(false)
+    end
+
+    it %(Return true when none of the characters is equal to Regexp) do
+      expect(array_of_strings.my_none?(/z/)).to eql(true)
+    end
+
+    it %(Return false when at least one of the characters is equal to Regexp) do
+      expect(array_of_strings.my_none?(/l/)).to eql(false)
+    end
+
+    it %(Return true if none of the elements are Float instances) do
+      expect(array.my_none?(Float)).to eql(true)
+    end
+
+    it %(Return false if at least one of the elements is an Integer instance) do
+      expect(array.my_none?(Integer)).to eql(false)
+    end
+
+    it %(Returns true if all of the elements are falsy) do
+      expect(array_falsy.my_none?).to eql(true)
+    end
+
+    it %(Return false if at least one of the elements is truthy) do
+      expect(array_falsy_int.my_none?).to eql(false)
+    end
+
+    it %(Return true if none of the elements of the array is 10) do
+      expect(array.my_none?(10)).to eql(true)
+    end
+
+    it %(Return false if at least one element of the array is 1) do
+      expect(array.my_none?(1)).to eql(false)
+    end
+
+    it %(Return true if none of the strings of the array is 'VSCode') do
+      expect(array_of_strings.my_none?('VSCode')).to eql(true)
+    end
+
+    it %(Return false if at least one string of the array is 'Ruby') do
+      expect(array_of_strings.my_none?('Ruby')).to eql(false)
+    end
+  end
 end
