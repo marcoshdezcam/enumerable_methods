@@ -103,4 +103,10 @@ describe Enumerable do
       expect(array_of_strings.my_select { |x| x.size < 5 }).to eql(%w[Ruby Ceci])
     end
   end
+
+  describe %(#my_all) do
+    it %(Returns true when all the elements of the array are less than 8) do
+      expect(array.my_all? { |x| x < 8 }).to eql(true)
+    end
+  end
 end
