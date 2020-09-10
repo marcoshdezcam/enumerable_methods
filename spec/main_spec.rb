@@ -316,7 +316,7 @@ describe Enumerable do
     end
   end
 
-  describe %(my_inject) do
+  describe %(#my_inject) do
     it %(Return the sum of all elements in the range) do
       expect(range.my_inject { |sum, x| sum + x }).to eql(28)
     end
@@ -335,6 +335,12 @@ describe Enumerable do
 
     it %(Raise error when a block nor an argument are not given) do
       expect { range.my_inject }.to raise_error(LocalJumpError)
+    end
+  end
+
+  describe %(#multiply_els) do
+    it %(Return the result of the elements of the array multiplied) do
+      expect(multiply_els(array)).to eql(5040)
     end
   end
 end
