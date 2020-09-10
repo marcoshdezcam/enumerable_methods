@@ -116,5 +116,9 @@ describe Enumerable do
     it %(Returns false if it finds the regex on all elements of the array) do
       expect(array_of_strings.my_all?(/o/)).to eql(false)
     end
+
+    it %(Returns true when all element are Numeric) do
+      expect(array.my_all?(Numeric)).to eql(true)
+    end
   end
 end
