@@ -108,5 +108,9 @@ describe Enumerable do
     it %(Returns true when all the elements of the array are less than 8) do
       expect(array.my_all? { |x| x < 8 }).to eql(true)
     end
+
+    it %(Returns false when all the elements of the array are greater than 8) do
+      expect(array.my_all? { |x| x > 8 }).to eql(false)
+    end
   end
 end
