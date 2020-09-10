@@ -232,5 +232,13 @@ describe Enumerable do
     it %(Return false when at least one of the characters is equal to Regexp) do
       expect(array_of_strings.my_none?(/l/)).to eql(false)
     end
+
+    it %(Return true if none of the elements are Float instances) do
+      expect(array.my_none?(Float)).to eql(true)
+    end
+
+    it %(Return false if at least one of the elements is an Integer instance) do
+      expect(array.my_none?(Integer)).to eql(false)
+    end
   end
 end
