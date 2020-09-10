@@ -290,12 +290,20 @@ describe Enumerable do
   end 
 
   describe %(#my_map) do
-    it "Return the square of each element in an array" do
+    it "Return the square of each element in an array (with a range)" do
       expect(range.my_map { |x| x ** 2 }).to eql([1, 4, 9, 16, 25, 36, 49])
     end
 
     it "Return an instance of Enumerator when no block is given" do
       expect(range.my_map).to be_an_instance_of Enumerator
+    end
+
+    it "Returns an array with the element passed as an argument repeated 7 times" do
+      expect(range.my_map { 'dog' }).to eql(%w[dog dog dog dog dog dog dog])
+    end
+
+    it "Return the square of each element in an array (with an array)" do
+      expect(array.my_map { |x| x ** 2 }).to eql([1, 4, 9, 16, 25, 36, 49])
     end
   end
 end
