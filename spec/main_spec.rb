@@ -112,5 +112,9 @@ describe Enumerable do
     it %(Returns false when all the elements of the array are greater than 8) do
       expect(array.my_all? { |x| x > 8 }).to eql(false)
     end
+
+    it %(Returns false if it finds the regex on all elements of the array) do
+      expect(array_of_strings.my_all?(/o/)).to eql(false)
+    end
   end
 end
