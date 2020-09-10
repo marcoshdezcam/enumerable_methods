@@ -90,5 +90,9 @@ describe Enumerable do
     it "Return the even numbers in the range 1 to 7" do
       expect(range.my_select(&:even?)).to eql([2, 4, 6])
     end
+
+    it "Returns an array of strings where every string in less than 5 characters long" do
+      expect(array_of_strings.my_select { |x| x.size < 5 }).to eql(['Ruby', 'Ceci'])
+    end
   end
 end
