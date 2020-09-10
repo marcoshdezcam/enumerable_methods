@@ -6,6 +6,8 @@ describe Enumerable do
   let(:hash) { { 1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7 } }
   let(:array_of_strings) { %w[Hello World Ruby Ceci Marcos] }
   let(:array_nums_strings) { [1, 10, 50, 'Ceci', 55, 'Marcos'] }
+  let(:array_false) { [false, 'Ceci', 'Marcos'] }
+  let(:array_nil) { [nil, 'Ceci', 'Marcos'] }
 
   describe %(#my_each) do
     it %(Prints array elements) do
@@ -124,6 +126,14 @@ describe Enumerable do
 
     it %(Returns false when all elements aren't Numeric) do
       expect(array_nums_strings.my_all?(Numeric)).to eql(false)
+    end
+
+    it %(Returns false when the array has at least one false element) do
+      expect(array_false.my_all?).to eql(false)
+    end
+
+    it %(Returns false when the array has at least one nil value) do
+      expect(array_nil.my_all?).to eql(false)
     end
   end
 end
