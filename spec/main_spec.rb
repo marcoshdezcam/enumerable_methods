@@ -224,5 +224,13 @@ describe Enumerable do
     it %(Return false when at least one element in the array is greater or equal to 4 characters long) do
       expect(array_of_strings.my_none? { |x| x.size >= 4 }).to eql(false)
     end
+
+    it %(Return true when none of the characters is equal to Regexp) do
+      expect(array_of_strings.my_none?(/z/)).to eql(true)
+    end
+
+    it %(Return false when at least one of the characters is equal to Regexp) do
+      expect(array_of_strings.my_none?(/l/)).to eql(false)
+    end
   end
 end
