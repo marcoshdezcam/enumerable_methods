@@ -322,7 +322,15 @@ describe Enumerable do
     end
 
     it %(Return the sum of all elements in the range + the argument) do
-      expect(range.my_inject(100) { |sum, x| sum + x}).to eql(128)
+      expect(range.my_inject(100) { |sum, x| sum + x }).to eql(128)
+    end
+
+    it %(Return the result of the operation defined in the symbol) do
+      expect(range.my_inject(:*)).to eql(5040)
+    end
+
+    it %(Return the result of the operation defined in the symbol and a factor as an argument) do
+      expect(range.my_inject(2, :*)).to eql(10_080)
     end
   end
 end
