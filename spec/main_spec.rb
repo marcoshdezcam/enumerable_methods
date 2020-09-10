@@ -171,6 +171,14 @@ describe Enumerable do
     it %(Return false when none of the strings in the array are greater or equal to 7 characters long) do 
       expect(array_of_strings.my_any? { |x| x.size >= 7 }).to eql(false)
     end
+
+    it %(Return true if at least one string in the array has the letter 'M') do
+      expect(array_of_strings.my_any?(/M/)).to eql(true)
+    end
+
+    it %(Return false if none of the strings in the array has the letter 'z') do
+      expect(array_of_strings.my_any?(/z/)).to eql(false)
+    end
   end
 end
 
