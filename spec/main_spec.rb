@@ -315,4 +315,14 @@ describe Enumerable do
       expect(array_all_cecis.my_map { /C/ }).to eql([/C/, /C/, /C/])
     end
   end
+
+  describe %(my_inject) do
+    it %(Return the sum of all elements in the range) do
+      expect(range.my_inject { |sum, x| sum + x }).to eql(28)
+    end
+
+    it %(Return the sum of all elements in the range + the argument) do
+      expect(range.my_inject(100) { |sum, x| sum + x}).to eql(128)
+    end
+  end
 end
