@@ -14,6 +14,7 @@ describe Enumerable do
   let(:array_falsy) { [false, false, nil] }
   let(:array_falsy_int) { [false, false, nil, 3] }
   let(:array_repeat) { [1, 2, 3, 3, 4, 3, 3, 3] }
+  let(:hash_strings) { { girl: 'pink', boy: 'blue', alien: 'green' } }
 
   describe %(#my_each) do
     it %(Prints array elements) do
@@ -287,23 +288,27 @@ describe Enumerable do
     it %(Return the ammount of elements that are smaller than 5) do
       expect(array.my_count { |x| x < 5 }).to eql(4)
     end
-  end 
+  end
 
   describe %(#my_map) do
-    it "Return the square of each element in an array (with a range)" do
-      expect(range.my_map { |x| x ** 2 }).to eql([1, 4, 9, 16, 25, 36, 49])
+    it %(Return the square of each element in an array (with a range)) do
+      expect(range.my_map { |x| x**2 }).to eql([1, 4, 9, 16, 25, 36, 49])
     end
 
-    it "Return an instance of Enumerator when no block is given" do
+    it %(Return an instance of Enumerator when no block is given) do
       expect(range.my_map).to be_an_instance_of Enumerator
     end
 
-    it "Returns an array with the element passed as an argument repeated 7 times" do
+    it %(Returns an array with the element passed as an argument repeated 7 times) do
       expect(range.my_map { 'dog' }).to eql(%w[dog dog dog dog dog dog dog])
     end
 
-    it "Return the square of each element in an array (with an array)" do
-      expect(array.my_map { |x| x ** 2 }).to eql([1, 4, 9, 16, 25, 36, 49])
+    it %(Return the square of each element in an array (with an array)) do
+      expect(array.my_map { |x| x**2 }).to eql([1, 4, 9, 16, 25, 36, 49])
+    end
+
+    it %(Return a string that contains the key and value of the hash) do
+      expect(hash_strings.my_map { |k, v| "#{k} is #{v}" }).to eql(['girl is pink', 'boy is blue', 'alien is green'])
     end
   end
 end
