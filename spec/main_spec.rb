@@ -240,5 +240,13 @@ describe Enumerable do
     it %(Return false if at least one of the elements is an Integer instance) do
       expect(array.my_none?(Integer)).to eql(false)
     end
+
+    it %(Returns true if all of the elements are falsy) do
+      expect(array_falsy.my_none?).to eql(true)
+    end
+
+    it %(Return false if at least one of the elements is truthy) do
+      expect(array_falsy_int.my_none?).to eql(false)
+    end
   end
 end
