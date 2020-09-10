@@ -107,14 +107,7 @@ module Enumerable
     return to_enum(:my_map) unless block_given?
 
     new_array = []
-    case block_given?
-    when true && !arg.empty?
-      if arg[0].class == Regexp
-        my_each { |i| yield(i) ? new_array << proc { arg } : nil }
-      else
-        my_each { |i| new_array << arg[0].call(i) }
-      end
-    when true
+    if block_given?
       my_each do |i|
         new_array << yield(i)
       end
