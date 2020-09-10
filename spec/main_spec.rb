@@ -86,5 +86,9 @@ describe Enumerable do
     it "Return an array of integers smaller than 4" do 
       expect(array.my_select { |x| x < 4 }).to eql([1, 2, 3])
     end
+
+    it "Return the even numbers in the range 1 to 7" do
+      expect(range.my_select(&:even?)).to eql([2, 4, 6])
+    end
   end
 end
