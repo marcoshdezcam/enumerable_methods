@@ -12,7 +12,7 @@ describe Enumerable do
   let(:array_same_number) { [7, 7, 7, 7] }
   let(:array_int_float_complex) { [1, 2.5, 3i] }
   let(:array_falsy) { [false, false, nil] }
-  let(:array_falsy_int) { [false, false, nil, 3] } 
+  let(:array_falsy_int) { [false, false, nil, 3] }
   let(:array_repeat) { [1, 2, 3, 3, 4, 3, 3, 3] }
 
   describe %(#my_each) do
@@ -215,7 +215,7 @@ describe Enumerable do
     it %(Return false if none of the strings in the array is 'Marcos') do
       expect(array_all_cecis.my_any?('Marcos')).to eql(false)
     end
-  end 
+  end
 
   describe %(#my_none?) do
     it %(Return true when none of the strings in the array are greater or equal to 7 characters long) do
@@ -267,21 +267,25 @@ describe Enumerable do
     end
   end
 
-  describe "#my_count" do
-    it "Returns the size of the array" do
+  describe %(#my_count) do
+    it %(Returns the size of the array) do
       expect(array.my_count).to eql(7)
     end
 
-    it "Returns the number of elements inside the range" do
+    it %(Returns the number of elements inside the range) do
       expect(range.my_count).to eql(7)
-    end 
+    end
 
-    it "Returns the ammount of repetitions where the element appears" do
+    it %(Returns the ammount of repetitions where the element appears) do
       expect(array_repeat.my_count(3)).to eql(5)
     end
 
-    it "Return the even numbers in the array (accepts a proc)" do
+    it %(Return the even numbers in the array (accepts a proc)) do
       expect(array_repeat.my_count(&:even?)).to eql(2)
+    end
+
+    it %(Return the ammount of elements that are smaller than 5) do
+      expect(array.my_count { |x| x < 5 }).to eql(4)
     end
   end
 end
