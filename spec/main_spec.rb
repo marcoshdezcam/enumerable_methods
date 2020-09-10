@@ -82,5 +82,9 @@ describe Enumerable do
     it "Returs the Enumerator" do
       expect(range.my_select).to be_an_instance_of Enumerator
     end
+
+    it "Return an array of integers smaller than 4" do 
+      expect(array.my_select { |x| x < 4 }).to eql([1, 2, 3])
+    end
   end
 end
