@@ -103,7 +103,7 @@ module Enumerable
     end
   end
 
-  def my_map(*arg)
+  def my_map()
     return to_enum(:my_map) unless block_given?
 
     new_array = []
