@@ -1,2 +1,2 @@
 --require spec_helper
---format documentation
+rspec --force-color --format documentation
