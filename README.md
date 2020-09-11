@@ -48,9 +48,9 @@ This enumerable methods where tested using [RSpec](https://en.wikipedia.org/wiki
 
 - To run the tests just run `rspec`
 - All tests passed
-  [RSpec screenshot](./screenshots/rspec.png)
+  ![RSpec screenshot](./screenshots/rspec.png)
 - We used 'smplecov' gem to generate a report of the lines of Ruby code tested
-  [Simplecov screenshot](./screenshots/simplecov_report_passed.png)
+  ![Simplecov screenshot](./screenshots/simplecov_report_passed.png)
 
 ## ✒️ Authors
 
