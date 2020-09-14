@@ -32,22 +32,17 @@ To get a local copy up and running follow these simple example steps.
 - Press the "Code" button and get the repo link.
 - Clone it using git.
 
-## Run the game 
+## Run Enumerables
 Type ```bin/main.rb``` in the root file of the project. You can also type ```ruby bin/main.rb``` in the root file of the project.
-
 ## Testing
-
 This enumerable methods where tested using [RSpec](https://en.wikipedia.org/wiki/RSpec), which is a Domain-specific Language testing tool written in Ruby, to test Ruby code.
-
 ### Install RSpec
-
 - In a terminal window type `gem install rspec`
 - The tests are already inside the `.rspec/main_spec.rb` file
-
 ### Run tests
-
-- To run the tests just run `rspec`
-- All tests passed
+- Open ```./spec/main_spec.rb``` file.
+- To run the tests just run ```rspec``` in aterminal window.
+- If all tests were passed you will see:
   ![RSpec screenshot](./screenshots/rspec.png)
 - We used 'smplecov' gem to generate a report of the lines of Ruby code tested
   ![Simplecov screenshot](./screenshots/simplecov_report_passed.png)
